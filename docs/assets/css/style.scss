@@ -1,0 +1,44 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+body
+{
+    font-size: 1rem;
+}
+
+.inner
+{
+    max-width: 850px;
+}
+
+#header_wrap .inner
+{
+    padding: 0px 10px;
+}
+
+#project_tagline
+{
+    display: none;
+}
+
+#downloads
+{
+    bottom: 0;
+}
+
+#main_content
+{
+    padding-top: 0;
+}
+
+#forkme_banner
+{
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    background-position: 60% 50%;
+    overflow: hidden;
+    color: transparent;
+}
