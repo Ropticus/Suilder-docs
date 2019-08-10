@@ -2,18 +2,18 @@
 ```csharp
 IAlias person = sql.Alias("person");
 
-//Order default
+// Order default
 IOrderBy orderBy = sql.OrderBy().Add(person["Name"], person["SurName"]);
 
-//Custom order
+// Custom order
 IOrderBy orderBy = sql.OrderBy()
     .Add(person["Name"]).Asc
     .Add(person["SurName"]).Desc;
 
-//Set order to multiple columns
+// Set order to multiple columns
 IOrderBy orderBy = sql.OrderBy().Add(person["Name"], person["SurName"]).Desc;
 
-//Boolean overload
+// Boolean overload
 IOrderBy orderBy = sql.OrderBy().Add(person["Name"]).SetOrder(false);
 
 ```
@@ -22,18 +22,18 @@ With lambda expressions:
 ```csharp
 Person person = null;
 
-//Order default
+// Order default
 IOrderBy orderBy = sql.OrderBy().Add(() => person.Name, () => person.SurName);
 
-//Custom order
+// Custom order
 IOrderBy orderBy = sql.OrderBy()
     .Add(() => person.Name).Asc
     .Add(() => person.SurName).Desc;
 
-//Set order to multiple columns
+// Set order to multiple columns
 IOrderBy orderBy = sql.OrderBy().Add(() => person.Name, () => person.SurName).Desc;
 
-//Boolean overload
+// Boolean overload
 IOrderBy orderBy = sql.OrderBy().Add(() => person.Name).SetOrder(false);
 ```
 
@@ -41,11 +41,11 @@ With query object:
 ```csharp
 IAlias person = sql.Alias("person");
 
-//Add order by to the query
+// Add order by to the query
 IOrderBy orderBy = sql.OrderBy().Add(person["Name"], person["SurName"]);
 IQuery query1 = sql.Query.OrderBy(select);
 
-//Create order by
+// Create order by
 IQuery query2 = sql.Query
     .OrderBy(x => x.Add(person["Name"], person["SurName"]));
 ```

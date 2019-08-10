@@ -2,10 +2,10 @@
 ```csharp
 IAlias person = sql.Alias("person");
 
-//Where
+// Where
 IQuery query1 = sql.Query.Where(person["Active"].Eq(true));
 
-//Having
+// Having
 IQuery query2 = sql.Query.Having(SqlFn.Count().Gt(10));
 ```
 

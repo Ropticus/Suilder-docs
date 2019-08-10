@@ -1,5 +1,5 @@
 theme: jekyll-theme-slate
-title: Suilder documentation
+title: Suilder
 description: SQL query builder for .NET.
 github:
   repository_url : https://github.com/Ropticus/Suilder

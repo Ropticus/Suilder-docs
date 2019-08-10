@@ -12,12 +12,12 @@ This means that there are some restrictions when you use a property of a class i
 ## Table builder
 You have to use the `TableBuilder` class to configure your classes. You can add classes that are not a table, like an **abstract** class, to share the same configuration with all derived classes. After you finish to register all your classes pass your `TableBuilder` to an engine:
 ```csharp
-//Create a table builder and add your entity classes
+// Create a table builder and add your entity classes
 TableBuilder tableBuilder = new TableBuilder()
     .Add<Person>()
     .Add<Department>();
 
-//Create an engine with the table builder
+// Create an engine with the table builder
 IEngine engine = new Engine(tableBuilder);
 ```
 > **Note:** if you have multiple engines and need different configurations for each one, you can create multiple `TableBuilder`.
@@ -211,4 +211,4 @@ tableBuilder.Add<Person>(config => config
 When you use a **select all** for an alias of an entity class, it selects only the registered columns. The order of the columns is **arbitrary**, but the primary keys are always added first. So you can, for example, use a **select all** in a **group by**, to group by the primary key and select the rest of the columns.
 
 ---
-[Back to index](index.md) &nbsp;|&nbsp;  [Next>](engines.md)
+[<Previous](releases.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](engines.md)

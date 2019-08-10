@@ -5,12 +5,15 @@ Suilder is focused on the use of [**alias objects**](builder.md#alias-and-column
 
 This library is only a query builder, so you have to combine with any other library to execute the queries and mapping the result.
 
-## Install
-Builder:
-> [https://www.nuget.org/packages/Suilder/](https://www.nuget.org/packages/Suilder/)
+## Installing
 
-Engines:
-> [https://www.nuget.org/packages/Suilder.Engines/](https://www.nuget.org/packages/Suilder.Engines/)
+Package | Nuget | Download (full) |
+--------|-------|----------|
+Suilder | [![Nuget](https://img.shields.io/nuget/v/Suilder?logo=nuget)](https://www.nuget.org/packages/Suilder/) | [![GitHub release](https://img.shields.io/github/release/Ropticus/Suilder?logo=github)](https://github.com/Ropticus/Suilder/releases/latest) |
+Suilder.Engines | [![Nuget](https://img.shields.io/nuget/v/Suilder.Engines?logo=nuget)](https://www.nuget.org/packages/Suilder.Engines/) | |
+
+## Release notes
+Read [release notes](releases.md).
 
 ## Configuration
 * [Entity classes](entity-classes.md)

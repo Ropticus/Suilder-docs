@@ -25,13 +25,13 @@ public class CrudExample
         string primaryKey = engine.GetPrimaryKeys(type)[0];
         IAlias<T> alias = sql.Alias<T>();
 
-        //Select query
+        // Select query
         IQuery query = sql.Query
             .Select(alias.All)
             .From(alias)
             .Where(alias[primaryKey].Eq(id));
 
-        //Compile an execute
+        // Compile an execute
         QueryResult result = engine.Compile(query);
         return con.QuerySingleOrDefault<T>(result.Sql, result.Parameters);
     }
@@ -45,33 +45,33 @@ public class CrudExample
         IInsert insert = sql.Insert().Into(alias);
         IValList values = sql.ValList;
 
-        //Get columns
+        // Get columns
         foreach (string column in engine.GetColumns(type))
         {
-            //Ignore primary key and navigation properties
+            // Ignore primary key and navigation properties
             if (column == primaryKey || column.Contains("."))
                 continue;
 
-            //Add column and value
+            // Add column and value
             insert.Add(alias[column]);
             values.Add(type.GetProperty(column).GetValue(entity));
         }
 
-        //Insert query
+        // Insert query
         IQuery query = sql.Query.Insert(insert).Values(values);
 
-        //Compile and execute
+        // Compile and execute
         QueryResult result = engine.Compile(query);
         con.Execute(result.Sql, result.Parameters);
 
-        //Get primary key
+        // Get primary key
         query = sql.Query.Select(SqlFn.LastInsertId());
 
-        //Compile and execute
+        // Compile and execute
         result = engine.Compile(query);
         int valuePK = con.ExecuteScalar<int>(result.Sql, result.Parameters);
 
-        //Update property
+        // Update property
         type.GetProperty(primaryKey).SetValue(entity, valuePK);
 
         return entity;
@@ -83,23 +83,23 @@ public class CrudExample
         string primaryKey = engine.GetPrimaryKeys(type)[0];
         IAlias<T> alias = sql.Alias<T>();
 
-        //Update query
+        // Update query
         IQuery query = sql.Query.Update()
             .From(alias)
             .Where(alias[primaryKey].Eq(type.GetProperty(primaryKey).GetValue(entity)));
 
-        //Get columns
+        // Get columns
         foreach (string column in engine.GetColumns(type))
         {
-            //Ignore primary key and navigation properties
+            // Ignore primary key and navigation properties
             if (column == primaryKey || column.Contains("."))
                 continue;
 
-            //Set value
+            // Set value
             query.Set(alias[column], type.GetProperty(column).GetValue(entity));
         }
 
-        //Compile and execute
+        // Compile and execute
         QueryResult result = engine.Compile(query);
         con.Execute(result.Sql, result.Parameters);
 
@@ -112,13 +112,13 @@ public class CrudExample
         string primaryKey = engine.GetPrimaryKeys(type)[0];
         IAlias<T> alias = sql.Alias<T>();
 
-        //Delete query
+        // Delete query
         IQuery query = sql.Query
             .Delete()
             .From(alias)
             .Where(alias[primaryKey].Eq(type.GetProperty(primaryKey).GetValue(entity)));
 
-        //Compile and execute
+        // Compile and execute
         QueryResult result = engine.Compile(query);
         con.Execute(result.Sql, result.Parameters);
     }

@@ -4,13 +4,13 @@ The **update** is a bit different than SQL because it uses the **From** method:
 IAlias person = sql.Alias("person");
 IAlias dept = sql.Alias("dept");
 
-//Update
+// Update
 IQuery query1 = sql.Query
     .Update()
     .Set(person["Name"], "SomeName")
     .From(person);
 
-//With join
+// With join
 IQuery query2 = sql.Query
     .Update()
     .Set(person["Name"], "SomeName")
@@ -18,7 +18,7 @@ IQuery query2 = sql.Query
     .Join(dept)
         .On(dept["Id"].Eq(person["DepartmentId"]));
 
-//Update join table
+// Update join table
 IQuery query3 = sql.Query
     .Update()
     .Set(dept["Name"], "SomeName2")
@@ -26,7 +26,7 @@ IQuery query3 = sql.Query
     .Join(dept)
         .On(dept["Id"].Eq(person["DepartmentId"]));
 
-//Update multiple tables
+// Update multiple tables
 IQuery query4 = sql.Query
     .Update()
     .Set(person["Name"], "SomeName")
@@ -35,13 +35,13 @@ IQuery query4 = sql.Query
     .Join(dept)
         .On(dept["Id"].Eq(person["DepartmentId"]));
 
-//Update top
+// Update top
 IQuery query5 = sql.Query
     .Update(x => x.Top(10))
     .Set(person["Name"], "SomeName")
     .From(person);
 
-//Add update options to the query
+// Add update options to the query
 IUpdate update = sql.Update().Top(10);
 
 IQuery query6 = sql.Query
@@ -55,13 +55,13 @@ With lambda expressions:
 Person person = null;
 Department dept = null;
 
-//Update
+// Update
 IQuery query1 = sql.Query
     .Update()
     .Set(() => person.Name, "SomeName")
     .From(() => person);
 
-//With join
+// With join
 IQuery query2 = sql.Query
     .Update()
     .Set(() => person.Name, "SomeName")
@@ -69,7 +69,7 @@ IQuery query2 = sql.Query
     .Join(() => dept)
         .On(() => dept.Id == person.Department.Id);
 
-//Update join table
+// Update join table
 IQuery query3 = sql.Query
     .Update()
     .Set(() => dept.Name, "SomeName2")
@@ -77,7 +77,7 @@ IQuery query3 = sql.Query
     .Join(() => dept)
         .On(() => dept.Id == person.Department.Id);
 
-//Update multiple tables
+// Update multiple tables
 IQuery query4 = sql.Query
     .Update()
     .Set(() => person.Name, "SomeName")
@@ -86,13 +86,13 @@ IQuery query4 = sql.Query
     .Join(() => dept)
         .On(() => dept.Id == person.Department.Id);
 
-//Update top
+// Update top
 IQuery query5 = sql.Query
     .Update(x => x.Top(10))
     .Set(() => person.Name, "SomeName")
     .From(() => person);
 
-//Add update options to the query
+// Add update options to the query
 IUpdate update = sql.Update().Top(10);
 
 IQuery query6 = sql.Query

@@ -36,7 +36,7 @@ You can create individual query fragments and combine them later:
 Person person = null;
 Department dept = null;
 
-//Create the fragments
+// Create the fragments
 ISelect select = sql.Select.Add(() => person, () => dept);
 IFrom from = sql.From(() => person);
 IJoin join = sql.Left.Join(() => dept)
@@ -45,7 +45,7 @@ IOperator where = sql.Op(() => person.Active && dept.Id == 10);
 IOrderBy orderBy = sql.OrderBy.Add(() => person.Name).Asc;
 IOffset offset = sql.Offset(10, 50);
 
-//Create the query
+// Create the query
 IQuery query = sql.Query
     .Select(select)
     .From(from)

@@ -5,11 +5,11 @@ Comparison operators:
 IOperator op1 = sql.Eq(person["Id"], 1);
 IOperator op2 = sql.Eq(() => person.Id, 1);
 
-//SqlExtensions
+// SqlExtensions
 IOperator op3 = person["Id"].Eq(1);
 IOperator op4 = sql.Col(() => person.Id).Eq(1);
 
-//Lambda expression
+// Lambda expression
 IOperator op5 = sql.Op(() => person.Id == 1);
 ```
 
@@ -19,12 +19,12 @@ IOperator op1 = sql.And
     .Add(sql.Eq(person["Active"], true))
     .Add(sql.Ge(person["Salary"], 2000));
 
-//Lambda overload
+// Lambda overload
 IOperator op2 = sql.Or
     .Add(() => person.Active))
     .Add(() => person.Salary >= 2000));
 
-//Lambda expression
+// Lambda expression
 IOperator op3 = sql.Op(() => person.Active && person.Salary >= 2000);
 ```
 
@@ -34,13 +34,13 @@ IOperator op1 = sql.Add
     .Add(person["Salary"])
     .Add(200);
 
-//Lambda overload
+// Lambda overload
 IOperator op2 = sql.Add
     .Add(() => person.Salary))
     .Add(200);
 
-//Lambda expression
-//Because is not a boolean result must call "Val" instead of "Op"
+// Lambda expression
+// Because is not a boolean result must call "Val" instead of "Op"
 IOperator op3 = sql.Val(() => person.Salary + 200);
 ```
 
@@ -50,13 +50,13 @@ IOperator op1 = sql.BitAnd
     .Add(2)
     .Add(3);
 
-//Lambda overload
+// Lambda overload
 IOperator op2 = sql.Add
     .Add(() => 2))
     .Add(3);
 
-//Lambda expression
-//Because is not a boolean result must call "Val" instead of "Op"
+// Lambda expression
+// Because is not a boolean result must call "Val" instead of "Op"
 IOperator op3 = sql.Val(() => 2 & 3);
 ```
 
@@ -70,39 +70,39 @@ IOperator op = sql.Union(
 ## List of operators
 The following list shows the implemented operators:
 
-SQL operator | ISqlBuilder | SqlExp | Expressions
--------------|-------------|--------|----------------------
-**=** | Eq <sup>(1)</sup>| Eq |==
-**<>** | NotEq <sup>(1)</sup>| NotEq | !=
-**LIKE** | Like <sup>(1)</sup>| Like | Like <sup>(2)</sup>
-**NOT LIKE** | NotLike <sup>(1)</sup>| NotLike | NotLike <sup>(2)</sup>
-**<** | Lt <sup>(1)</sup>| Lt | <
-**<=** | Le <sup>(1)</sup>| Le | <=
-**>** | Gt <sup>(1)</sup>| Gt | >
-**>=** | Ge <sup>(1)</sup>| Ge | >=
-**IN** | In <sup>(1)</sup>| In | In <sup>(3)</sup>
-**NOT IN** | NotIn <sup>(1)</sup>| NotIn | NotIn <sup>(3)</sup>
-**NOT** | Not <sup>(1)</sup>| Not | !
-**IS NULL** | IsNull <sup>(1)</sup><br>Eq(null) <sup>(1)</sup>| IsNull<br>Eq(null) | == null
-**IS NOT NULL** | IsNotNull <sup>(1)</sup><br>NotEq(null)<sup>(1)</sup> | IsNotNull<br>NotEq(null) | != null
-**AND** | And | | && *or* &
-**OR** | Or | | &#124;&#124; *or* &#124;
-**+** | Add | | +
-**-** | Subtract | | -
-**\*** | Multiply | | *
-**/** | Divide | | /
-**%** | Modulo | | %
-**&** | BitAnd | | &
-**&#124;** | BitOr | | &#124;
-**^** | BitXor | | ^
-**ALL** | All | All |
-**ANY** | Any | Any |
-**EXISTS** | Exists | Exists |
-**SOME** | Some |  Some |
-**UNION** | Union | |
-**UNION ALL** | UnionAll | |
-**INTERSECT** | Intersect | |
-**EXCEPT** | Except | |
+SQL operator | ISqlBuilder | SqlExp | Expressions |
+-------------|-------------|--------|-------------|
+**=** | Eq <sup>(1)</sup>| Eq | == |
+**<>** | NotEq <sup>(1)</sup>| NotEq | != |
+**LIKE** | Like <sup>(1)</sup>| Like | Like <sup>(2)</sup> |
+**NOT LIKE** | NotLike <sup>(1)</sup>| NotLike | NotLike <sup>(2)</sup> |
+**<** | Lt <sup>(1)</sup>| Lt | < |
+**<=** | Le <sup>(1)</sup>| Le | <= |
+**>** | Gt <sup>(1)</sup>| Gt | > |
+**>=** | Ge <sup>(1)</sup>| Ge | >= |
+**IN** | In <sup>(1)</sup>| In | In <sup>(3)</sup> |
+**NOT IN** | NotIn <sup>(1)</sup>| NotIn | NotIn <sup>(3)</sup> |
+**NOT** | Not <sup>(1)</sup>| Not | ! |
+**IS NULL** | IsNull <sup>(1)</sup><br>Eq(null) <sup>(1)</sup>| IsNull<br>Eq(null) | == null |
+**IS NOT NULL** | IsNotNull <sup>(1)</sup><br>NotEq(null)<sup>(1)</sup> | IsNotNull<br>NotEq(null) | != null |
+**AND** | And | | && *or* & |
+**OR** | Or | | &#124;&#124; *or* &#124; |
+**+** | Add | | + |
+**-** | Subtract | | - |
+**\*** | Multiply | | * |
+**/** | Divide | | / |
+**%** | Modulo | | % |
+**&** | BitAnd | | & |
+**&#124;** | BitOr | | &#124; |
+**^** | BitXor | | ^ |
+**ALL** | All | All | |
+**ANY** | Any | Any | |
+**EXISTS** | Exists | Exists | |
+**SOME** | Some |  Some | |
+**UNION** | Union | | |
+**UNION ALL** | UnionAll | | |
+**INTERSECT** | Intersect | | |
+**EXCEPT** | Except | | |
 
 > <sup>(1)</sup>: has also extension methods for `IQueryFragment`.
 >
@@ -113,17 +113,17 @@ SQL operator | ISqlBuilder | SqlExp | Expressions
 ### Like pattern
 You can use the following methods to apply a like pattern:
 
-ISqlBuilder | Result
-------------|-------
-ToLikeStart | Value%
-ToLikeEnd | %Value
-ToLikeAny | %Value%
+ISqlBuilder | Result |
+------------|------- |
+ToLikeStart | Value% |
+ToLikeEnd | %Value |
+ToLikeAny | %Value% |
 
 ```csharp
 IAlias person = sql.Alias("person");
 IOperator op = person["Name"].Like(sql.ToLikeAny("SomeName"));
 
-//Extension method
+// Extension method
 IOperator op = person["Name"].Like("SomeName".ToLikeAny());
 
 ```
