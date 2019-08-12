@@ -1,9 +1,14 @@
+.subnav .subnav > li:first-child
+{
+    display: none;
+}
+
 .section p
 {
     text-align: justify;
 }
 
-.subnav .subnav > li:first-child
+.section p + ul
 {
-    display: none;
+    margin-top: -10px;
 }

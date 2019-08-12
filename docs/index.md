@@ -1,7 +1,7 @@
 # Suilder
 [Suilder](https://github.com/Ropticus/Suilder) is a SQL query builder for .NET.
 
-Suilder is focused on the use of [**alias objects**](general/builder.md#alias-objects) to reference tables and column names, there are different types of alias, that can use strings or lambda expressions, and support translation of names. The queries are built by combining smaller query fragments, allowing us to build dynamic queries easily.
+It is focused on the use of [**alias objects**](general/builder.md#alias-objects) to reference tables and column names, there are different types of alias, that can use strings or lambda expressions, and support translation of names. The queries are built by combining smaller query fragments, allowing us to build dynamic queries easily.
 
 This library is only a query builder, so you have to combine with any other library to execute the queries and mapping the result.
 
@@ -11,9 +11,6 @@ Package | Nuget | Download (full) |
 --------|-------|----------|
 Suilder | [![Nuget](https://img.shields.io/nuget/v/Suilder?logo=nuget)](https://www.nuget.org/packages/Suilder/) | [![GitHub release](https://img.shields.io/github/release/Ropticus/Suilder?logo=github)](https://github.com/Ropticus/Suilder/releases/latest) |
 Suilder.Engines | [![Nuget](https://img.shields.io/nuget/v/Suilder.Engines?logo=nuget)](https://www.nuget.org/packages/Suilder.Engines/) | Use full release. |
-
-## Release notes
-See [release notes](releases/releases.md).
 
 ## Configuration
 * [Entity classes](configuration/entity-classes.md)
@@ -47,3 +44,6 @@ See [release notes](releases/releases.md).
 * [Raw SQL](general/raw-sql.md)
 * [Data types](general/data-types.md)
 * [CRUD operations](general/crud.md)
+
+## Release notes
+See [release notes](releases/releases.md).

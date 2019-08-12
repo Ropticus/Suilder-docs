@@ -2,6 +2,7 @@
 You can use your entity classes to build the queries, this allows you to translate the tables and column names, and build strongly typed queries. Your classes equals an alias of a table, and works in the same manner that a SQL alias.
 
 This means that there are some restrictions when you use a property of a class in a query:
+
 * The property must exist as a column in the table, you cannot navigate to columns of other tables, you must do a join and use the property of the joined table.
 * You can use navigation properties for foreign keys, because the foreign key is a column of your table.
 * You cannot use inverse properties, because the column belongs to another table.
@@ -28,6 +29,7 @@ IEngine engine = new Engine(tableBuilder);
 The inheritance patterns work different in Suilder, because it never generates automatically any SQL clause depending on your class structure. Each class is mapped to only one table and it works like an alias of the table.
 
 There are 3 properties to configure the inheritance:
+
 * **IsTable**: if true, the class is added as a table, else, is only used to inherit the configuration for derived classes. By default is false for **abstract** classes.
 * **InheritColumns**: if the class must inherit the columns of the base class. By default is true for classes whose base type is **abstract**.
 * **InheritTable**: if the class must inherit the table name and the columns of the base class. By default is false.
@@ -45,6 +47,7 @@ Employee
 
 ### Table per concrete type (TPC)
 To use the TPC pattern, you have to set the following configuration:
+
 * Set **IsTable** to false for `BaseConfig` class.
 * Set **InheritColumns** to true for `Person` and `Department` class.
 
@@ -52,6 +55,7 @@ This is **done by default** if the class `BaseConfig` is **abtract**.
 
 ### Table per type (TPT)
 To use the TPT pattern, you have to set the following configuration:
+
 * Set **InheritColumns** to false for `Employee` class.
 
 This is the **default configuration** for classes that inherit a **non abstract** class.
@@ -61,6 +65,7 @@ This is the **default configuration** for classes that inherit a **non abstract*
 
 ### Table per hierarchy
 To use the TPH pattern, you have to set the following configuration:
+
 * Set **InheritTable** to true for `Employee` class.
 
 !!! warning
@@ -74,6 +79,7 @@ The **Add** method has more precedence and overrides the configuration of the at
 
 ### Conventions
 The following conventions are used by default:
+
 * The primary key is the **Id** property if exists in the class.
 * If a property is another table, is used as foreign key. By default it uses the primary keys of the other table, concatenating the name of the property and primary key property. For example: `Department.Id` -> "DepartmentId".
 * Only public properties with a getter and setter are added as columns.

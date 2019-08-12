@@ -57,6 +57,7 @@ Lambda expressions are compiled to an `IQueryFragment`. When you use your **enti
 Any member of a class that is not registered as a table, is invoked and added as a parameter value. Functions are also executed, if you want to compile a function to SQL, you can [register your functions](functions.md#register-functions).
 
 The following methods of the builder allow you to compile a lambda expression:
+
 * **Alias**: compile to an alias instance (`IAlias<T>`).
 * **Col**: compile to a column instance (`IColumn`).
 * **Val**: compile to a value, anything that returns a value like a column (`IColumn`), a function, or an arithmetic operator.

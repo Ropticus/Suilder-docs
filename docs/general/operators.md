@@ -104,11 +104,10 @@ SQL operator | ISqlBuilder | SqlExp | Expressions |
 **INTERSECT** | Intersect | | |
 **EXCEPT** | Except | | |
 
-> <sup>(1)</sup>: has also extension methods for `IQueryFragment`.
->
-> <sup>(2)</sup>: extension method for `String`.
->
-> <sup>(3)</sup>: extension method for `IEnumerable`.
+!!! note
+    (1): has also extension methods for `IQueryFragment`.<br/>
+    (2): extension method for `String`.<br/>
+    (3): extension method for `IEnumerable`.<br/>
 
 ## Like pattern
 You can use the following methods to apply a like pattern:
