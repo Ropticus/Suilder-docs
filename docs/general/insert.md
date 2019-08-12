@@ -79,6 +79,3 @@ IQuery query5 = sql.Query
     .Insert(insert)
     .Values(values);
 ```
-
----
-[<Previous](offset.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](update.md)

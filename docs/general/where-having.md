@@ -1,4 +1,5 @@
 # Where and having
+Use the **Where** and **Having** methods of the `IQuery` object.
 ```csharp
 IAlias person = sql.Alias("person");
 
@@ -9,7 +10,5 @@ IQuery query1 = sql.Query.Where(person["Active"].Eq(true));
 IQuery query2 = sql.Query.Having(SqlFn.Count().Gt(10));
 ```
 
-> **Note:** calling the **Where** or **Having** method multiple overrides the clause.
-
----
-[<Previous](from-join-cte.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](group-by.md)
+!!! warning
+    Each call to these methods, does not create an **and** condition, it **overrides** the clause.

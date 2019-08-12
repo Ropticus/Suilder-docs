@@ -1,0 +1,45 @@
+site_name: Suilder Docs
+site_description: SQL query builder for .NET.
+copyright: Copyright (c) 2019 Víctor Diez
+repo_url: https://github.com/Ropticus/Suilder-docs
+edit_uri: blob/master/docs/
+theme:
+    name: readthedocs
+    highlightjs: true
+    hljs_languages:
+        - csharp
+
+markdown_extensions:
+    - admonition
+    - toc:
+        permalink: True
+
+extra_css:
+    - _css/extra.css
+
+nav:
+- Home:
+    - 'index.md'
+- Configuration:
+    - 'configuration/entity-classes.md'
+    - 'configuration/engines.md'
+- General:
+    - 'general/builder.md'
+    - 'general/operators.md'
+    - 'general/case-when.md'
+    - 'general/functions.md'
+    - 'general/query.md'
+    - 'general/select.md'
+    - 'general/from-join-cte.md'
+    - 'general/where-having.md'
+    - 'general/group-by.md'
+    - 'general/order-by.md'
+    - 'general/offset.md'
+    - 'general/insert.md'
+    - 'general/update.md'
+    - 'general/delete.md'
+    - 'general/raw-sql.md'
+    - 'general/data-types.md'
+    - 'general/crud.md'
+- Releases:
+    - 'releases/releases.md'

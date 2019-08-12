@@ -7,6 +7,3 @@
 
 ## 1.0.0
 * First version.
-
----
-[Back to index](index.md) &nbsp;|&nbsp;  [Next>](entity-classes.md)

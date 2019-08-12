@@ -90,7 +90,5 @@ IQuery query6 = sql.Query
         .On(() => dept.Id == person.Department.Id);
 ```
 
-> **Note:** not all engines support **delete** with **join** or **delete** multiple tables.
-
----
-[<Previous](update.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](raw-sql.md)
+!!! warning
+    Not all engines support **delete** with **join** or delete multiple tables.

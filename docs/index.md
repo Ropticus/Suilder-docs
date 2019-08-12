@@ -1,7 +1,7 @@
-# Suilder - SQL query builder
+# Suilder
 [Suilder](https://github.com/Ropticus/Suilder) is a SQL query builder for .NET.
 
-Suilder is focused on the use of [**alias objects**](builder.md#alias-and-columns) to reference tables and column names, there are different types of alias, that can use strings or lambda expressions, and support translation of names. The queries are built by combining smaller query fragments, allowing us to build dynamic queries easily.
+Suilder is focused on the use of [**alias objects**](general/builder.md#alias-objects) to reference tables and column names, there are different types of alias, that can use strings or lambda expressions, and support translation of names. The queries are built by combining smaller query fragments, allowing us to build dynamic queries easily.
 
 This library is only a query builder, so you have to combine with any other library to execute the queries and mapping the result.
 
@@ -10,38 +10,40 @@ This library is only a query builder, so you have to combine with any other libr
 Package | Nuget | Download (full) |
 --------|-------|----------|
 Suilder | [![Nuget](https://img.shields.io/nuget/v/Suilder?logo=nuget)](https://www.nuget.org/packages/Suilder/) | [![GitHub release](https://img.shields.io/github/release/Ropticus/Suilder?logo=github)](https://github.com/Ropticus/Suilder/releases/latest) |
-Suilder.Engines | [![Nuget](https://img.shields.io/nuget/v/Suilder.Engines?logo=nuget)](https://www.nuget.org/packages/Suilder.Engines/) | |
+Suilder.Engines | [![Nuget](https://img.shields.io/nuget/v/Suilder.Engines?logo=nuget)](https://www.nuget.org/packages/Suilder.Engines/) | Use full release. |
 
 ## Release notes
-Read [release notes](releases.md).
+See [release notes](releases/releases.md).
 
 ## Configuration
-* [Entity classes](entity-classes.md)
-    * [Inheritance patterns](entity-classes.md#inheritance-patterns)
-    * [Configuration](entity-classes.md#configuration)
-* [Engines](engines.md)
-    * [Supported engines](engines.md#supported-engines)
-    * [Engine configuration](engines.md#engine-configuration)
-    * [Register functions](engines.md#register-functions)
+* [Entity classes](configuration/entity-classes.md)
+    * [Inheritance patterns](configuration/entity-classes.md#inheritance-patterns)
+    * [Configuration](configuration/entity-classes.md#configuration)
+* [Engines](configuration/engines.md)
+    * [Supported engines](configuration/engines.md#supported-engines)
+    * [Engine configuration](configuration/engines.md#engine-configuration)
+    * [Register functions](configuration/engines.md#register-functions)
 
 ## General
-* [The builder](builder.md)
-    * [Alias and columns](builder.md#alias-and-columns)
-    * [Lambda expressions](builder.md#lambda-expressions)
-    * [Compile the query](builder.md#compile-the-query)
-    * [Utilities classes](builder.md#utilities-classes)
-    * [Custom components](builder.md#custom-components)
-* [Operators](operators.md)
-* [Functions](functions.md)
-* [Query](query.md)
-* [Select](select.md)
-* [From, join and CTE](from-join-cte.md)
-* [Where and having](where-having.md)
-* [Group by](group-by.md)
-* [OrderBy](order-by.md)
-* [Offset and limit](offset.md)
-* [Insert](insert.md)
-* [Update](update.md)
-* [Delete](delete.md)
-* [Raw SQL](raw-sql.md)
-* [CRUD operations](crud.md)
+* [The builder](general/builder.md)
+    * [Alias and columns](general/builder.md#alias-objects)
+    * [Lambda expressions](general/builder.md#lambda-expressions)
+    * [Compile the query](general/builder.md#compile-the-query)
+    * [Utilities classes](general/builder.md#utilities-classes)
+    * [Custom components](general/builder.md#custom-components)
+* [Operators](general/operators.md)
+* [Case when](general/case-when.md)
+* [Functions](general/functions.md)
+* [Query](general/query.md)
+* [Select](general/select.md)
+* [From, join and CTE](general/from-join-cte.md)
+* [Where and having](general/where-having.md)
+* [Group by](general/group-by.md)
+* [OrderBy](general/order-by.md)
+* [Offset and limit](general/offset.md)
+* [Insert](general/insert.md)
+* [Update](general/update.md)
+* [Delete](general/delete.md)
+* [Raw SQL](general/raw-sql.md)
+* [Data types](general/data-types.md)
+* [CRUD operations](general/crud.md)

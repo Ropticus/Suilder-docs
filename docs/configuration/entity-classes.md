@@ -7,7 +7,8 @@ This means that there are some restrictions when you use a property of a class i
 * You cannot use inverse properties, because the column belongs to another table.
 * You cannot use lists, because these are inverse properties.
 
-> **Note:** these restrictions are only for building the queries, you can use any property for mapping the results.
+!!! note
+    These restrictions are only for building the queries, you can use any property for mapping the results.
 
 ## Table builder
 You have to use the `TableBuilder` class to configure your classes. You can add classes that are not a table, like an **abstract** class, to share the same configuration with all derived classes. After you finish to register all your classes pass your `TableBuilder` to an engine:
@@ -20,7 +21,8 @@ TableBuilder tableBuilder = new TableBuilder()
 // Create an engine with the table builder
 IEngine engine = new Engine(tableBuilder);
 ```
-> **Note:** if you have multiple engines and need different configurations for each one, you can create multiple `TableBuilder`.
+!!! tip
+    If you have multiple engines and need different configurations for each one, you can create multiple `TableBuilder`.
 
 ## Inheritance patterns
 The inheritance patterns work different in Suilder, because it never generates automatically any SQL clause depending on your class structure. Each class is mapped to only one table and it works like an alias of the table.
@@ -54,13 +56,15 @@ To use the TPT pattern, you have to set the following configuration:
 
 This is the **default configuration** for classes that inherit a **non abstract** class.
 
-> **Note:** if you use the `Employee` class, you only get the columns of the `Employee` table. You have to add a join with the `Person` class, like you would do in SQL.
+!!! warning
+    If you use the `Employee` class, you only get the columns of the `Employee` table. You have to add a join with the `Person` class, like you would do in SQL.
 
 ### Table per hierarchy
 To use the TPH pattern, you have to set the following configuration:
 * Set **InheritTable** to true for `Employee` class.
 
-> **Note:** if you use the `Employee` class, you get both, the rows of `Employee` and `Person`. You have to add a where clause with your column discriminator, like you would do in SQL, to only get the `Employee` type.
+!!! warning
+    If you use the `Employee` class, you get both, the rows of `Employee` and `Person`. You have to add a where clause with your column discriminator, like you would do in SQL, to only get the `Employee` type.
 
 ## Configuration
 You can use **attributes** or the **Add** method of the `TableBuilder` to set the configuration of the class.
@@ -75,7 +79,8 @@ The following conventions are used by default:
 * Only public properties with a getter and setter are added as columns.
 * **IEnumerable** properties are ignored (except string type obviously).
 
-> **Warning**: remember that you can not use inverse properties, so if you have a reverse one to one property, you have to mark that property as [Ignored](#ignore-property).
+!!! warning
+    Remember that you can not use inverse properties, so if you have a reverse one to one property, you have to mark that property as [ignored](#ignore-property).
 
 ### Default config
 You can change the default primary key and default table name:
@@ -178,7 +183,8 @@ tableBuilder.Add<Person>(config => config
     .ForeignKey(x => x.Department.Id, "DeptId"));
 ```
 
-> **Note:** if your foreign key is not a navigation property, you can use indistinctly the **Column** or **ForeignKey** attribute, and **ColumnName** or **ForeignKey** method.
+!!! note
+    If your foreign key is not a navigation property, you can use indistinctly the **Column** or **ForeignKey** attribute, and **ColumnName** or **ForeignKey** method.
 
 #### Composite key
 With attribute:
@@ -209,6 +215,3 @@ tableBuilder.Add<Person>(config => config
 
 ## About select all
 When you use a **select all** for an alias of an entity class, it selects only the registered columns. The order of the columns is **arbitrary**, but the primary keys are always added first. So you can, for example, use a **select all** in a **group by**, to group by the primary key and select the rest of the columns.
-
----
-[<Previous](releases.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](engines.md)

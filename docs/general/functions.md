@@ -27,7 +27,8 @@ Department dept = null;
 IFunction func = SqlFn.Substring(sql.Col(() => dept.Name, 1, 10);
 ```
 
-> **Note**: to avoid this you can use the **SqlExp** utility class instead.
+!!! note
+    To avoid this you can use the **SqlExp** utility class instead.
 
 ### SqlExp
 Alternative class to `SqlFn` for lambda expressions:
@@ -50,7 +51,4 @@ IOperator op = sql.Op(() => SqlExp.Eq(person.Department.Id, dept["Id"]);
 ## Register functions
 You can register your functions in the [ExpressionProcessor](builder.md#expressionprocessor) to compile the lambda expressions to an `IQueryFragment`.
 
-You can register your functions in your [engine](engines.md#register-functions) to translate them with a different name or compile to SQL with a custom delegate.
-
----
-[<Previous](operators.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](select.md)
+You can register your functions in your [engine](../configuration/engines.md#register-functions) to translate them with a different name or compile to SQL with a custom delegate.

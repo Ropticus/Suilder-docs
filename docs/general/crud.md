@@ -124,6 +124,3 @@ public class CrudExample
     }
 }
 ```
-
----
-[<Previous](raw-sql.md) &nbsp;|&nbsp;  [Back to index](index.md)

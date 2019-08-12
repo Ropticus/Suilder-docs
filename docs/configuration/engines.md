@@ -40,7 +40,8 @@ engine.Options.EscapeEnd = ']';
 engine.Options.Pagination = PaginationStyle.Offset;
 ```
 
-> **Warning:** if you need different configurations, you must create multiple engines instances, modify the configuration continuously before execute a query is not thread safe.
+!!! warning
+    If you need different configurations, you must create multiple engines instances, modify the configuration continuously before execute a query is not thread safe.
 
 You can inherit the `Engine` class instead and override the **InitOptions** method:
 ```csharp
@@ -97,7 +98,8 @@ engine.AddFunction("CAST", (queryBuilder, engine, name, fn) =>
 });
 ```
 
-> **Note:** The delegate function works like the [Compile method](builder.md#custom-components) of the `IQueryFragment` interface.
+!!! note
+    The delegate function works like the [Compile method](../general/builder.md#custom-components) of the `IQueryFragment` interface.
 
 You can inherit the `Engine` class instead and override the **InitFunctions** method.
 ```csharp
@@ -108,7 +110,7 @@ protected override void InitFunctions()
 }
 ```
 
-The supported engines has already registered the functions of the [SqlFn](functions.md#sqlfn) and [SqlExp](functions.md#sqlexp) classes.
+The supported engines has already registered the functions of the [SqlFn](../general/functions.md#sqlfn) and [SqlExp](../general/functions.md#sqlexp) classes.
 
 ## Compile query
 The engine can compile any object that implements the interface `IQueryFragment`.
@@ -123,12 +125,11 @@ IQueryFragment query = sql.Query
 // Compile the query using the engine
 QueryResult result = engine.Compile(query);
 
-// This is the SQL result
-result.Sql; // SELECT "person".* FROM "person" WHERE "person"."Id" = @p0
+// This is the SQL result:
+// SELECT "person".* FROM "person" WHERE "person"."Id" = @p0
+result.Sql;
 
-// This is a dictionary with the parameters
-result.Parameters; // { ["@p0"] = 1 }
+// This is a dictionary with the parameters:
+// { ["@p0"] = 1 }
+result.Parameters;
 ```
-
----
-[<Previous](entity-classes.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](builder.md)

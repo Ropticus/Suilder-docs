@@ -101,7 +101,5 @@ IQuery query6 = sql.Query
     .From(() => person);
 ```
 
-> **Note:** not all engines support **update** with **join** or **update** multiple tables.
-
----
-[<Previous](insert.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](delete.md)
+!!! warning
+    Not all engines support **update** with **join** or update multiple tables.

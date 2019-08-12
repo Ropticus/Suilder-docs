@@ -54,6 +54,3 @@ IQuery query = sql.Query
     .OrderBy(orderBy)
     .Offset(offset);
 ```
-
----
-[<Previous](functions.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](select.md)

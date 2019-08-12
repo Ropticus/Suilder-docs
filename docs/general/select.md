@@ -1,4 +1,5 @@
 # Select
+The **select** statement support **distinct**, **distinct on** and **top**:
 ```csharp
 IAlias person = sql.Alias("person");
 
@@ -68,6 +69,3 @@ IQuery query2 = sql.Query
 IQuery query3 = sql.Query
     .Select(x => x.Distinct().Add(person["Name"]));
 ```
-
----
-[<Previous](functions.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](from-join-cte.md)

@@ -49,6 +49,3 @@ IQuery query1 = sql.Query.OrderBy(select);
 IQuery query2 = sql.Query
     .OrderBy(x => x.Add(person["Name"], person["SurName"]));
 ```
-
----
-[<Previous](group-by.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](offset.md)

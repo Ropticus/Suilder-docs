@@ -14,7 +14,8 @@ ISqlBuilder sql = SqlBuilder.Register(new SqlBuilder());
 
 Only **one builder** can be registered **per application** because the builder is registered globally in the `SqlBuilder.Instance` static variable. This variable allows to any `IQueryFragment` and **static utilities** classes to access the builder instance without the needed to inject to it. For the rest of your classes it is recommended that you inject the `ISqlBuilder` interface instead.
 
-> **Note:** you can inherit the builder to add more methods, and override any existing method.
+!!! tip
+    You can inherit the builder to add more methods, and override any existing method.
 
 ## Alias objects
 **Alias objects** implements the interface `IAlias`, and is both the table and his alias. With an alias you can create an `IColumn` instance that contains the column name:
@@ -28,8 +29,12 @@ IColumn col1 = person["Name"];
 IColumn col2 = dept[x => x.Name];
 
 // Get all columns
-IColumn colAll1 = person.All; // person["*"]; it works too
-IColumn colAll2 = dept.All; // dept[x => x]; it works too
+IColumn colAll1 = person.All;
+IColumn colAll2 = dept.All;
+
+// It works too
+IColumn colAll3 = person["*"];
+IColumn colAll4 = dept[x => x];
 
 // Operator
 IOperator op = dept[x => x.Id].Eq(person["DepartmentId"]);
@@ -43,12 +48,13 @@ IFrom from = sql.From(person);
 // Join
 IJoin join = sql.Join(dept).On(op);
 ```
-> **Note**: the **typed alias** can also use a string for column names.
+!!! tip
+    The **typed alias** can also use a string for column names.
 
 ## Lambda expressions
 Lambda expressions are compiled to an `IQueryFragment`. When you use your **entity classes** in an expression, is compiled to an `IAlias<T>` or an `IColumn`.
 
-Any member of a class that is not registered as a table, is invoked and added as a parameter value. Functions are also executed, if you want to compile a function to SQL, you can [register your functions](engines.md#register-functions).
+Any member of a class that is not registered as a table, is invoked and added as a parameter value. Functions are also executed, if you want to compile a function to SQL, you can [register your functions](functions.md#register-functions).
 
 The following methods of the builder allow you to compile a lambda expression:
 * **Alias**: compile to an alias instance (`IAlias<T>`).
@@ -56,7 +62,8 @@ The following methods of the builder allow you to compile a lambda expression:
 * **Val**: compile to a value, anything that returns a value like a column (`IColumn`), a function, or an arithmetic operator.
 * **Op**: compile a boolean expression to a boolean operator.
 
-> **Note**: in most cases you do not need to call these methods because other components accept a lambda expression and compile for you with the correct method.
+!!! tip
+    In most cases you do not need to call these methods because other components accept a lambda expression and compile for you with the correct method.
 
 ```csharp
 // Class alias
@@ -116,7 +123,7 @@ IJoin join = sql.Join("department", "dept");
 ```
 
 ## Compile the query
-To compile the query you need an [engine](engines.md) and call his **Compile** method:
+To compile the query you need an [engine](../configuration/engines.md) and call his **Compile** method:
 ```csharp
 // Create your query
 IAlias person = sql.Alias("person");
@@ -128,11 +135,13 @@ IQueryFragment query = sql.Query
 // Compile the query using the engine
 QueryResult result = engine.Compile(query);
 
-// This is the SQL result
-result.Sql; // SELECT "person".* FROM "person" WHERE "person"."Id" = @p0
+// This is the SQL result:
+// SELECT "person".* FROM "person" WHERE "person"."Id" = @p0
+result.Sql;
 
-// This is a dictionary with the parameters
-result.Parameters; // { ["@p0"] = 1 }
+// This is a dictionary with the parameters:
+// { ["@p0"] = 1 }
+result.Parameters;
 ```
 
 ## Utilities classes
@@ -156,7 +165,8 @@ Before using it you must initialize the class:
 SqlExp.Initialize();
 ```
 
-> **Note**: The functions are registered in the **ExpressionProcessor** class.
+!!! note
+    The functions are registered in the **ExpressionProcessor** class.
 
 ### ExpressionProcessor
 This class is responsible for compiling the lambda expressions.
@@ -223,6 +233,3 @@ public virtual void Compile(QueryBuilder queryBuilder, IEngine engine)
     }
 }
 ```
-
----
-[<Previous](engines.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](operators.md)

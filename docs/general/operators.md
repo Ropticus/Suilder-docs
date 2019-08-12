@@ -1,6 +1,6 @@
 # Operators
-Comparison operators:
 
+## Comparison operators:
 ```csharp
 IOperator op1 = sql.Eq(person["Id"], 1);
 IOperator op2 = sql.Eq(() => person.Id, 1);
@@ -13,7 +13,7 @@ IOperator op4 = sql.Col(() => person.Id).Eq(1);
 IOperator op5 = sql.Op(() => person.Id == 1);
 ```
 
-Logical operatorss:
+## Logical operators:
 ```csharp
 IOperator op1 = sql.And
     .Add(sql.Eq(person["Active"], true))
@@ -28,7 +28,7 @@ IOperator op2 = sql.Or
 IOperator op3 = sql.Op(() => person.Active && person.Salary >= 2000);
 ```
 
-Arithmetic operators:
+## Arithmetic operators:
 ```csharp
 IOperator op1 = sql.Add
     .Add(person["Salary"])
@@ -44,7 +44,7 @@ IOperator op2 = sql.Add
 IOperator op3 = sql.Val(() => person.Salary + 200);
 ```
 
-Bitwise operators:
+## Bitwise operators:
 ```csharp
 IOperator op1 = sql.BitAnd
     .Add(2)
@@ -60,7 +60,7 @@ IOperator op2 = sql.Add
 IOperator op3 = sql.Val(() => 2 & 3);
 ```
 
-Query operators:
+## Query operators:
 ```csharp
 IOperator op = sql.Union(
     sql.Query.Select(() => person.Name).From(() => person),
@@ -110,7 +110,7 @@ SQL operator | ISqlBuilder | SqlExp | Expressions |
 >
 > <sup>(3)</sup>: extension method for `IEnumerable`.
 
-### Like pattern
+## Like pattern
 You can use the following methods to apply a like pattern:
 
 ISqlBuilder | Result |
@@ -125,8 +125,4 @@ IOperator op = person["Name"].Like(sql.ToLikeAny("SomeName"));
 
 // Extension method
 IOperator op = person["Name"].Like("SomeName".ToLikeAny());
-
 ```
-
----
-[<Previous](builder.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](functions.md)

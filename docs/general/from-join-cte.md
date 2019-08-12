@@ -1,4 +1,6 @@
 # From, join and CTE
+The **from** and **join** clauses support **subqueries** and **common table expressions** (CTE).
+
 ## From
 ```csharp
 IAlias person = sql.Alias("person");
@@ -52,7 +54,7 @@ IQuery query2 = sql.Query
     .From(person);
 ```
 
-For engines that require to use a **dummy table** you can use the following. It can be used in all engines, if the engine does not need a dummy table, writes nothing:
+For engines that require to use a **dummy table** you can use the following. It can be used in all engines, to write the same query for all. If the engine does not need a dummy table, writes nothing:
 ```csharp
 // From dummy table
 IQuery query3 = sql.Query.Select(SqlFn.Now())
@@ -147,6 +149,3 @@ IQuery query = sql.Query
     .Join(cte2, () => dept)
         .On(() => dept.Id == person.Department.Id);
 ```
-
----
-[<Previous](select.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](where-having.md)

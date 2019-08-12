@@ -1,4 +1,5 @@
 # Group by
+Use the **GroupBy** method of the `IQuery` object.
 ```csharp
 IAlias person = sql.Alias("person");
 
@@ -31,6 +32,3 @@ IQuery query2 = sql.Query
 IQuery query2 = sql.Query
     .GroupBy(x => x.Add(() => person.Name, () => person.SurName));
 ```
-
----
-[<Previous](where-having.md) &nbsp;|&nbsp;  [Back to index](index.md) &nbsp;|&nbsp;  [Next>](order-by.md)

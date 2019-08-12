@@ -1,0 +1,9 @@
+.section p
+{
+    text-align: justify;
+}
+
+.subnav .subnav > li:first-child
+{
+    display: none;
+}
