@@ -46,4 +46,4 @@ Suilder.Engines | [![Nuget](https://img.shields.io/nuget/v/Suilder.Engines?logo=
 * [CRUD operations](general/crud.md)
 
 ## Release notes
-See [release notes](releases/releases.md).
+See [release notes](releases/releases-notes.md).

@@ -1,5 +1,9 @@
 # Release notes
 
+## 1.1.1
+* Fix default **Cast** function in all engines.
+* Fix **Ltrim** and **Rtrim** functions in MySQL when there is only one argument.
+
 ## 1.1.0
 * Add support for insert multiple rows using select union all.
 * Add dummy table for Oracle DB.
