@@ -1,5 +1,9 @@
 # Release notes
 
+## 1.2.0
+* Add raw **top** option in select, update and delete.
+* Fix **Upper** function in `SqlExp`.
+
 ## 1.1.1
 * Fix default **Cast** function in all engines.
 * Fix **Ltrim** and **Rtrim** functions in MySQL when there is only one argument.
