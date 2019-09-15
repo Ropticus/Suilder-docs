@@ -51,7 +51,7 @@ To use the TPC pattern, you have to set the following configuration:
 * Set **IsTable** to false for `BaseConfig` class.
 * Set **InheritColumns** to true for `Person` and `Department` class.
 
-This is **done by default** if the class `BaseConfig` is **abtract**.
+This is **done by default** if the class `BaseConfig` is **abstract**.
 
 ### Table per type (TPT)
 To use the TPT pattern, you have to set the following configuration:

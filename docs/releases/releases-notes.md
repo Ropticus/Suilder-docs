@@ -1,5 +1,8 @@
 # Release notes
 
+## 1.2.1
+* Fix lambda expressions that combine arithmetic and bit operators.
+
 ## 1.2.0
 * Add raw **top** option in select, update and delete.
 * Fix **Upper** function in `SqlExp`.
