@@ -5,29 +5,29 @@ An engine contains the configuration of a specific SQL engine, and allows you to
 IEngine engine = new Engine();
 ```
 
-It accepts a `TableBuilder` with the configuration of your tables:
+It accepts an `ITableBuilder` with the configuration of your tables:
 ```csharp
 // Create a table builder and add your entity classes
-TableBuilder tableBuilder = new TableBuilder()
-    .Add<Person>()
-    .Add<Department>();
+ITableBuilder tableBuilder = new TableBuilder();
+tableBuilder.Add<Person>();
+tableBuilder.Add<Department>();
 
 // Create an engine with the table builder
 IEngine engine = new Engine(tableBuilder);
 ```
 
-You can have any number of engines. The engines can share the same `TableBuilder` or have his own `TableBuilder` with different configuration.
+You can have any number of engines. The engines can share the same `ITableBuilder` or have his own `ITableBuilder` with different configuration.
 
 ## Supported engines
 You can use Suilder with any SQL engine, but there a list of supported engines that are already configured.
 
 Engine | Class name | Remarks |
 -------|------------|---------|
-MySQL | MySQL | |
-Oracle Database | OracleDB | By default it uses quoted uppercase names. |
-PostgreSQL | PostgreSQL | By default it uses quoted lowercase names. |
-SQLite | SQLite | |
-SQL Server | SQLServer | |
+MySQL | MySQLEngine | |
+Oracle Database | OracleDBEngine | By default it uses quoted uppercase names. |
+PostgreSQL | PostgreSQLEngine | By default it uses quoted lowercase names. |
+SQLite | SQLiteEngine | |
+SQL Server | SQLServerEngine | |
 
 If your SQL engine is not in the list, it does not mean that you cannot use Suilder with them, but you have to configure your engine.
 
@@ -60,6 +60,7 @@ You can alter the following configurations:
 
 Property | Default value | Description |
 ---------|---------------|-------------|
+Name | `null` | The engine name. |
 EscapeStart | `"` | The start character to delimit identifiers. |
 EscapeEnd | `"` | The end character to delimit identifiers. |
 UpperCaseNames | `false` | If true, converts all tables and column names to uppercase. |
