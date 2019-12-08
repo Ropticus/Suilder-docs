@@ -1,5 +1,13 @@
 # Release notes
 
+## 2.1.0
+Add support for array values.
+
+* `IEnumerable` values are no longer divided into multiple parameters.
+* To add multiple parameters you have to use the `ISubList` interface.
+* The **In** operator automatically adds the values to an `ISubList`.
+* `Array` properties are not ignored by default.
+
 ## 2.0.0
 Rewrite of the table builder:
 

@@ -10,6 +10,9 @@ IRawSql raw2 = sql.Raw("SELECT {0} {1}", person["Name"], sql.From(person));
 
 // Add parameters
 IRawSql raw3 = sql.Raw("WHERE {0} = {1}", person["Id"], 10);
+
+// Add parameter list
+IRawSql raw4 = sql.Raw("WHERE {0} IN {1}", person["Id"], sql.SubList.Add(1, 2, 3));
 ```
 
 If your raw text is a complete query you must use the **RawQuery** method:

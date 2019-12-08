@@ -85,6 +85,9 @@ public class Employee : Person
 
     // Foreign key
     public virtual Department Department { get; set; }
+
+    // Binary column
+    public byte[] Image { get; set; }
 }
 
 // This is a nested class
@@ -138,7 +141,7 @@ The following conventions are used by default:
 * If a property is another table, is used as foreign key. By default it uses the primary keys of the other table, concatenating the name of the property and primary key property. For example: `Department.Id` -> `"DepartmentId"`.
 * Nested properties use the concatenation of all properties as name. For example: `Address.Street` -> `"AddressStreet"`.
 * Only public properties with a getter and setter are added as columns.
-* **IEnumerable** properties are ignored (except **string** type obviously).
+* `IEnumerable` properties are ignored (except `string` and `Array` types).
 
 !!! warning
     Remember that you can not use inverse properties, so if you have a reverse one to one property, you have to mark that property as [ignored](#ignore-property).
