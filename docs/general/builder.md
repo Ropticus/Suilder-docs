@@ -52,13 +52,13 @@ IJoin join = sql.Join(dept).On(op);
     The **typed alias** can also use a string for column names.
 
 ## Lambda expressions
-Lambda expressions are compiled to an `IQueryFragment`. When you use your **entity classes** in an expression, is compiled to an `IAlias<T>` or an `IColumn`.
+Lambda expressions are compiled to an `IQueryFragment`. When you use your **entity classes** in an expression, is compiled to an `IAlias` or an `IColumn`.
 
 Any member of a class that is not registered as a table, is invoked and added as a parameter value. Functions are also executed, if you want to compile a function to SQL, you can [register your functions](functions.md#register-functions).
 
 The following methods of the builder allow you to compile a lambda expression:
 
-* **Alias**: compile to an alias instance (`IAlias<T>`).
+* **Alias**: compile to an alias instance (`IAlias`).
 * **Col**: compile to a column instance (`IColumn`).
 * **Val**: compile to a value, anything that returns a value like a column (`IColumn`), a function, or an arithmetic operator.
 * **Op**: compile a boolean expression to a boolean operator.
