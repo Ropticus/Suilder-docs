@@ -1,5 +1,9 @@
 # Release notes
 
+## 2.2.1
+- Add support for array index expressions.
+- Fix expressions of the **Col** method with multiple nested properties.
+
 ## 2.2.0
 Improve the performance of lambda expressions:
 
