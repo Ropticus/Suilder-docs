@@ -21,8 +21,8 @@ IOperator op1 = sql.And
 
 // Lambda overload
 IOperator op2 = sql.Or
-    .Add(() => person.Active))
-    .Add(() => person.Salary >= 2000));
+    .Add(() => person.Active)
+    .Add(() => person.Salary >= 2000);
 
 // Lambda expression
 IOperator op3 = sql.Op(() => person.Active && person.Salary >= 2000);
@@ -36,7 +36,7 @@ IOperator op1 = sql.Add
 
 // Lambda overload
 IOperator op2 = sql.Add
-    .Add(() => person.Salary))
+    .Add(() => person.Salary)
     .Add(200);
 
 // Lambda expression
@@ -52,7 +52,7 @@ IOperator op1 = sql.BitAnd
 
 // Lambda overload
 IOperator op2 = sql.Add
-    .Add(() => 2))
+    .Add(() => 2)
     .Add(3);
 
 // Lambda expression

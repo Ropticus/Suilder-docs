@@ -45,7 +45,7 @@ It also implements some operators that allow comparisons of different types:
 Person person = null;
 IAlias dept = sql.Alias("dept");
 
-IOperator op = sql.Op(() => SqlExp.Eq(person.Department.Id, dept["Id"]);
+IOperator op = sql.Op(() => SqlExp.Eq(person.Department.Id, dept["Id"]));
 ```
 
 ## Register functions

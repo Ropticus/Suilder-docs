@@ -10,13 +10,13 @@ IQuery query1 = sql.Query
 // Add columns
 IQuery query2 = sql.Query
     .Insert(x => x.Into(person)
-    .Add(person["Name"], person["SurName"]))
+        .Add(person["Name"], person["SurName"]))
     .Values("Name1", "SurName1");
 
 // Multiple rows
 IQuery query3 = sql.Query
     .Insert(x => x.Into(person)
-    .Add(person["Name"], person["SurName"]))
+        .Add(person["Name"], person["SurName"]))
     .Values("Name1", "SurName1")
     .Values("Name2", "SurName2")
     .Values("Name3", "SurName3");
@@ -24,14 +24,14 @@ IQuery query3 = sql.Query
 // Insert into select
 IQuery query4 = sql.Query
     .Insert(x => x.Into(person)
-    .Add(person["Name"], person["SurName"]))
+        .Add(person["Name"], person["SurName"]))
     .Select(person["Name"], person["SurName"])
     .From(person)
     .Where(person["Active"].Eq(false));
 
 // Add insert options to the query
 IInsert insert = sql.Insert().Into(person)
-    .Add(person["Name"], person["SurName"]))
+    .Add(person["Name"], person["SurName"]);
 
 IQuery query5 = sql.
     .Insert(insert)
@@ -50,13 +50,13 @@ IQuery query1 = sql.Query
 // Add columns
 IQuery query2 = sql.Query
     .Insert(x => x.Into(() => person)
-    .Add(() => person.Name, () => person.SurName))
+        .Add(() => person.Name, () => person.SurName))
     .Values("Name1", "SurName1");
 
 // Multiple rows
 IQuery query3 = sql.Query
     .Insert(x => x.Into(() => person)
-    .Add(() => person.Name, () => person.SurName))
+        .Add(() => person.Name, () => person.SurName))
     .Values("Name1", "SurName1")
     .Values("Name2", "SurName2")
     .Values("Name3", "SurName3");
@@ -64,14 +64,14 @@ IQuery query3 = sql.Query
 // Insert into select
 IQuery query4 = sql.Query
     .Insert(x => x.Into(() => person)
-    .Add(() => person.Name, () => person.SurName))
+        .Add(() => person.Name, () => person.SurName))
     .Select(() => person.Name, () => person.SurName)
     .From(() => person)
     .Where(() => !person.Active);
 
 // Add insert options to the query
 IInsert insert = sql.Insert().Into(() => person)
-    .Add(() => person.Name, () => person.SurName))
+    .Add(() => person.Name, () => person.SurName);
 
 IValList values = sql.ValList.Add("Name1", "SurName1");
 
