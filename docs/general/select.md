@@ -34,7 +34,7 @@ Person person = null;
 ISelect select1 = sql.Select().Add(() => person);
 
 // Select columns
-ISelect select2 = ISelect select = sql.Select().Add(() => person.Name, () => person.SurName);
+ISelect select2 = sql.Select().Add(() => person.Name, () => person.SurName);
 
 // Add alias
 ISelect select3 = sql.Select().Add(() => person.SurName).As("SurName");

@@ -4,26 +4,26 @@ copyright: Copyright (c) 2019 Víctor Diez
 repo_url: https://github.com/Ropticus/Suilder-docs
 edit_uri: blob/master/docs/
 theme:
-    name: readthedocs
-    highlightjs: true
-    hljs_languages:
-        - csharp
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - csharp
 
 markdown_extensions:
-    - admonition
-    - toc:
-        permalink: True
+  - admonition
+  - toc:
+      permalink: true
 
 extra_css:
-    - _css/extra.css
+  - _css/extra.css
 
 nav:
-- Home:
+  - Home:
     - 'index.md'
-- Configuration:
+  - Configuration:
     - 'configuration/entity-classes.md'
     - 'configuration/engines.md'
-- General:
+  - General:
     - 'general/builder.md'
     - 'general/operators.md'
     - 'general/case-when.md'
@@ -40,6 +40,8 @@ nav:
     - 'general/delete.md'
     - 'general/raw-sql.md'
     - 'general/data-types.md'
-    - 'general/crud.md'
-- Releases:
+  - Examples:
+    - 'examples/crud.md'
+    - 'examples/custom-configuration.md'
+  - Releases:
     - 'releases/releases-notes.md'

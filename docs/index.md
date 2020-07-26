@@ -43,7 +43,10 @@ Suilder.Engines | [![Nuget](https://img.shields.io/nuget/v/Suilder.Engines?logo=
 * [Delete](general/delete.md)
 * [Raw SQL](general/raw-sql.md)
 * [Data types](general/data-types.md)
-* [CRUD operations](general/crud.md)
+
+## Examples
+* [CRUD operations](examples/crud.md)
+* [Custom configuration](examples/custom-configuration.md)
 
 ## Release notes
 See [release notes](releases/releases-notes.md).

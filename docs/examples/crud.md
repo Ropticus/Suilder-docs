@@ -40,8 +40,12 @@ public class CrudExample
         // Compile an execute
         QueryResult result = engine.Compile(query);
 
+        // We can have multiple properties mapped to the same column
+        ILookup<string, string> columnsLookup = tableInfo.ColumnNamesDic
+            .ToLookup(x => x.Value.ToLower(), x => x.Key);
+
         // Map result
-        return Map<T>(tableInfo, con.QuerySingleOrDefault(result.Sql, result.Parameters));
+        return Map<T>(con.QuerySingleOrDefault(result.Sql, result.Parameters), columnsLookup);
     }
 
     public IEnumerable<T> GetAll<T>() where T : new()
@@ -59,20 +63,24 @@ public class CrudExample
         // Compile an execute
         QueryResult result = engine.Compile(query);
 
+        // We can have multiple properties mapped to the same column
+        ILookup<string, string> columnsLookup = tableInfo.ColumnNamesDic
+            .ToLookup(x => x.Value.ToLower(), x => x.Key);
+
         // Map result
         return con.Query(result.Sql, result.Parameters).Cast<IDictionary<string, object>>()
-            .Select(x => Map<T>(tableInfo, x));
+            .Select(x => Map<T>(x, columnsLookup));
     }
 
-    private T Map<T>(ITableInfo tableInfo, IDictionary<string, object> columns) where T : new()
+    private T Map<T>(IDictionary<string, object> row, ILookup<string, string> columnsLookup)
+        where T : new()
     {
         T entity = new T();
-        foreach (var column in columns)
+        foreach (var column in row)
         {
-            // We can have multiple properties mapped to the same column
-            foreach (var colName in tableInfo.ColumnNamesDic.Where(x => x.Value == column.Key))
+            foreach (var property in columnsLookup[column.Key.ToLower()])
             {
-                SetValue(entity, colName.Key, column.Value);
+                SetValue(entity, property, column.Value);
             }
         }
 
@@ -86,7 +94,9 @@ public class CrudExample
         // Get table info
         ITableInfo tableInfo = engine.GetInfo<T>();
         string primaryKey = tableInfo.PrimaryKeys[0];
-        bool autoincrement = tableInfo.GetMetadata<bool>(primaryKey, "autoincrement");
+
+        // Custom metadata
+        bool autoincrement = tableInfo.GetMetadata<bool>(primaryKey, "Autoincrement");
 
         IInsert insert = sql.Insert().Into(alias);
         IValList values = sql.ValList;
@@ -98,7 +108,7 @@ public class CrudExample
         foreach (string column in tableInfo.Columns)
         {
             // Skip primary key if is auto increment
-            if (column == primaryKey && autoincrement)
+            if (autoincrement && column == primaryKey)
                 continue;
 
             // Skip duplicate property
