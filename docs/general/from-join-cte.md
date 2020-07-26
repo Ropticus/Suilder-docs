@@ -63,6 +63,7 @@ IQuery query3 = sql.Query.Select(SqlFn.Now())
 
 ## Join
 ```csharp
+IAlias person = sql.Alias("person");
 IAlias dept = sql.Alias("dept");
 
 // Join table
@@ -90,10 +91,11 @@ IJoin join7 = sql.Join(dept).Options(sql.Raw("WITH (NO LOCK)"));
 
 With lambda expressions:
 ```csharp
+Person person = null;
 Department dept = null;
 
 // Join table
-IJoin join = sql.Join(() => dept);
+IJoin join1 = sql.Join(() => dept);
 
 // Join type
 IJoin join2 = sql.Left.Join(() => dept);
@@ -118,6 +120,7 @@ IJoin join7 = sql.Join(() => dept).Options(sql.Raw("WITH (NO LOCK)"));
 With query object:
 ```csharp
 IAlias person = sql.Alias("person");
+IAlias dept = sql.Alias("dept");
 
 // Add join to the query
 IJoin join = sql.Join(dept).On(dept["Id"].Eq(person["DepartmentId"]));
@@ -143,7 +146,7 @@ Person person = null;
 Department dept = null;
 
 IQuery query = sql.Query
-    .With(cte, ct2)
+    .With(cte1, ct2)
     .Select(() => person, () => dept)
     .From(cte1, () => person)
     .Join(cte2, () => dept)

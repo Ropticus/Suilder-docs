@@ -3,18 +3,18 @@
 IAlias person = sql.Alias("person");
 
 // Order default
-IOrderBy orderBy = sql.OrderBy().Add(person["Name"], person["SurName"]);
+IOrderBy orderBy1 = sql.OrderBy().Add(person["Name"], person["SurName"]);
 
 // Custom order
-IOrderBy orderBy = sql.OrderBy()
+IOrderBy orderBy2 = sql.OrderBy()
     .Add(person["Name"]).Asc
     .Add(person["SurName"]).Desc;
 
 // Set order to multiple columns
-IOrderBy orderBy = sql.OrderBy().Add(person["Name"], person["SurName"]).Desc;
+IOrderBy orderBy3 = sql.OrderBy().Add(person["Name"], person["SurName"]).Desc;
 
 // Boolean overload
-IOrderBy orderBy = sql.OrderBy().Add(person["Name"]).SetOrder(false);
+IOrderBy orderBy4 = sql.OrderBy().Add(person["Name"]).SetOrder(false);
 
 ```
 
@@ -23,18 +23,18 @@ With lambda expressions:
 Person person = null;
 
 // Order default
-IOrderBy orderBy = sql.OrderBy().Add(() => person.Name, () => person.SurName);
+IOrderBy orderBy1 = sql.OrderBy().Add(() => person.Name, () => person.SurName);
 
 // Custom order
-IOrderBy orderBy = sql.OrderBy()
+IOrderBy orderBy2 = sql.OrderBy()
     .Add(() => person.Name).Asc
     .Add(() => person.SurName).Desc;
 
 // Set order to multiple columns
-IOrderBy orderBy = sql.OrderBy().Add(() => person.Name, () => person.SurName).Desc;
+IOrderBy orderBy3 = sql.OrderBy().Add(() => person.Name, () => person.SurName).Desc;
 
 // Boolean overload
-IOrderBy orderBy = sql.OrderBy().Add(() => person.Name).SetOrder(false);
+IOrderBy orderBy4 = sql.OrderBy().Add(() => person.Name).SetOrder(false);
 ```
 
 With query object:

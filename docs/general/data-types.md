@@ -1,11 +1,11 @@
 # Data types
 You can use the **Type** method to create a SQL type:
 ```csharp
-ISqlType type = sql.Type("INT");
+ISqlType type1 = sql.Type("INT");
 
-ISqlType type = sql.Type("VARCHAR", 50);
+ISqlType type2 = sql.Type("VARCHAR", 50);
 
-ISqlType type = sql.Type("DECIMAL", 10, 2);
+ISqlType type3 = sql.Type("DECIMAL", 10, 2);
 ```
 
 !!! warning

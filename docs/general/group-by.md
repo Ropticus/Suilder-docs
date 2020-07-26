@@ -12,7 +12,7 @@ IQuery query2 = sql.Query
     .GroupBy(person["Name"], person["SurName"])
 
 // Other options
-IQuery query2 = sql.Query
+IQuery query3 = sql.Query
     .GroupBy(x => x.Add(person["Name"], person["SurName"]));
 ```
 
@@ -29,6 +29,6 @@ IQuery query2 = sql.Query
     .GroupBy(() => person.Name, () => person.SurName)
 
 // Other options
-IQuery query2 = sql.Query
+IQuery query3 = sql.Query
     .GroupBy(x => x.Add(() => person.Name, () => person.SurName));
 ```

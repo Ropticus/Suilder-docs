@@ -1,0 +1,17 @@
+.wy-nav-side {
+    padding-bottom: 3em;
+}
+
+.section p {
+    text-align: justify;
+}
+
+.section p + ul, .section p + pre {
+    margin-top: -10px !important;
+}
+
+pre[class*="language-"] {
+    padding: 0;
+    margin: 1em 0;
+    overflow: initial;
+}

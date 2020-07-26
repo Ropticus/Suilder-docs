@@ -49,7 +49,7 @@ ISelect select5 = sql.Select().DistinctOn(() => person.Name).Add(() => person);
 ISelect select6 = sql.Select().Top(10).Percent().Add(() => person);
 
 // Over
-ISelect select = sql.Select().Add(() => SqlExp.Sum(person.Salary))
+ISelect select7 = sql.Select().Add(() => SqlExp.Sum(person.Salary))
     .Over(o => o.PartitionBy(x => x.Add(() => person.Department.Id)));
 ```
 
