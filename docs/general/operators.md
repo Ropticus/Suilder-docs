@@ -103,6 +103,7 @@ SQL operator | ISqlBuilder | SqlExp | Expressions |
 **UNION ALL** | UnionAll | | |
 **INTERSECT** | Intersect | | |
 **EXCEPT** | Except | | |
+**COALESCE()** | | | ?? |
 
 !!! note
     (1): has also extension methods for `IQueryFragment`.<br/>

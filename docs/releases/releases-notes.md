@@ -1,5 +1,26 @@
 # Release notes
 
+## 2.3.0
+Add support for positional parameters:
+
+- Add **ParameterIndex** property to the engine options.
+- Add **ParametersList** property to the query result for positional parameters.
+- Change the default parameter prefix of the Oracle engine to `":p"`.
+
+Add schema name configuration.
+
+Add support for IEnumerable properties:
+
+- `IEnumerable` properties are no longer ignored.
+- `IEnumerable<T>` properties where **T** is another table are ignored.
+
+Improve lambda expressions:
+
+- Add support for the coalesce operator.
+- Add support for list init expressions.
+- Fix compiled convert expressions.
+- Improve compiled binary expressions.
+
 ## 2.2.1
 - Add support for array index expressions.
 - Fix expressions of the **Col** method with multiple nested properties.

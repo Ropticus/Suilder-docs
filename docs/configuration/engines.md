@@ -67,17 +67,20 @@ UpperCaseNames | `false` | If true, converts all tables and column names to uppe
 LowerCaseNames | `false` | If true, converts all tables and column names to lowercase. |
 TableAs | `true` | If true, adds the "as" keyword before the alias of a table. |
 FromDummyName | `null` | The name of a dummy table for engines that always need a "from" clause. Set to null for engines that do not need a dummy table. |
-TopSupported | `true` | If the engine support "top". |
-DistinctOnSupported | `true` | If the engine support "distinct on". |
-RightJoinSupported | `true` | If the engine support "right join". |
-FullJoinSupported | `true` | If the engine support "full join". |
+WithRecursive | `false` | If the "with" clause needs the "recursive" keyword. |
+TopSupported | `true` | If the engine supports "top". |
+TopAsParameters  | `true` | If true, adds the top values as parameters. |
+DistinctOnSupported | `true` | If the engine supports "distinct on". |
+RightJoinSupported | `true` | If the engine supports "right join". |
+FullJoinSupported | `true` | If the engine supports "full join". |
 OffsetStyle | `OffsetStyle.Offset`  | The offset style. |
-OffsetAsParameters | `true` | If true, add the offset values as parameters. |
+OffsetAsParameters | `true` | If true, adds the offset values as parameters. |
 InsertWithUnion | `false` | If the "insert" statement must use a "select union all" to insert multiple rows. |
 UpdateWithFrom | `false` | If the "update" statement must have a "from" clause. Some engines need it when the table has an alias or a join. |
 UpdateSetWithTableName | `false` | If the column must have the table name in the "set" clause. Some engines need it when the table has a join. |
 DeleteWithAlias | `true` | If the "delete" statement must have an alias before the "from" clause. Some engines need it when the table has an alias or a join. |
 ParameterPrefix | `"@p"` | The prefix of the parameters. |
+ParameterIndex  | `true` | If true, adds the index after the parameter name. |
 FunctionsOnlyRegistered | `false` | If only allow registered functions. |
 
 ## Register functions

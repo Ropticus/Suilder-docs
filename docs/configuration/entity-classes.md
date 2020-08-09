@@ -6,7 +6,7 @@ This means that there are some restrictions when you use a property of a class i
 * The property must exist as a column in the table, you cannot navigate to columns of other tables, you must do a join and use the property of the joined table.
 * You can use navigation properties for foreign keys, because the foreign key is a column of your table.
 * You cannot use inverse properties, because the column belongs to another table.
-* You cannot use lists, because these are inverse properties.
+* You cannot use navigation lists, because these are inverse properties.
 
 !!! note
     These restrictions are only for building the queries, you can use any property for mapping the results.
@@ -61,8 +61,11 @@ public class Department : BaseConfig
     // Foreign key
     public virtual Employee Boss { get; set; }
 
-    // Lists are ignored
+    // Navigation lists are ignored
     public virtual List<Employee> Employees { get; set; }
+
+    // Array column
+    public virtual List<string> Tags { get; set; }
 }
 
 public class Person : BaseConfig
@@ -137,17 +140,37 @@ The **Add** method has more precedence and overrides the configuration of the at
 ### Conventions
 The following conventions are used by default:
 
-* The primary key is the **Id** property if exists in the class.
-* If a property is another table, is used as foreign key. By default it uses the primary keys of the other table, concatenating the name of the property and primary key property. For example: `Department.Id` -> `"DepartmentId"`.
+#### Table and column names
+
+* The schema name is empty.
+* The table name is the name of the class.
+* The column name is the name of the property.
 * Nested properties use the concatenation of all properties as name. For example: `Address.Street` -> `"AddressStreet"`.
+
+#### Primary key
+
+* The primary key is the **Id** property if exists in the class.
+
+#### Foreign keys
+
+* If a property is another table, is used as foreign key.
+* By default it uses the primary keys of the other table, concatenating the name of the property and primary key property. For example: `Department.Id` -> `"DepartmentId"`.
+
+#### Supported properties
+
 * Only public properties with a getter and setter are added as columns.
-* `IEnumerable` properties are ignored (except `string` and `Array` types).
+* `IEnumerable<T>` properties where **T** is another table are ignored.
 
 !!! warning
     Remember that you can not use inverse properties, so if you have a reverse one to one property, you have to mark that property as [ignored](#ignore-property).
 
 ### Default config
 You can change some of the default conventions.
+
+Default schema name:
+```csharp
+tableBuilder.DefaultSchema(x => "dbo");
+```
 
 Default table name:
 ```csharp
@@ -215,6 +238,19 @@ tableBuilder.AddNested<Address>();
 
 !!! warning
     A nested class **cannot have circular references** with other nested class, you must [ignore](#ignore-property) the properties that cause a circular reference. A reference to an entity class does not cause a circular reference because is mapped as a foreign key.
+
+### Schema name
+With attribute:
+```csharp
+[Table(Schema = "dbo")]
+public class Department
+```
+
+With table builder:
+```csharp
+tableBuilder.Add<Department>()
+    .Schema("dbo");
+```
 
 ### Table name
 With attribute:
