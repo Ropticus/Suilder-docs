@@ -21,13 +21,13 @@ You can have any number of engines. The engines can share the same `ITableBuilde
 ## Supported engines
 You can use Suilder with any SQL engine, but there a list of supported engines that are already configured.
 
-Engine | Class name | Remarks |
--------|------------|---------|
-MySQL | MySQLEngine | |
-Oracle Database | OracleDBEngine | By default it uses quoted uppercase names. |
-PostgreSQL | PostgreSQLEngine | By default it uses quoted lowercase names. |
-SQLite | SQLiteEngine | |
-SQL Server | SQLServerEngine | |
+| Engine | Class name | Remarks |
+|--------|------------|---------|
+| MySQL | MySQLEngine | |
+| Oracle Database | OracleDBEngine | By default it uses quoted uppercase names. |
+| PostgreSQL | PostgreSQLEngine | By default it uses quoted lowercase names. |
+| SQLite | SQLiteEngine | |
+| SQL Server | SQLServerEngine | |
 
 If your SQL engine is not in the list, it does not mean that you cannot use Suilder with them, but you have to configure your engine.
 
@@ -58,30 +58,30 @@ protected override EngineOptions InitOptions()
 
 You can alter the following configurations:
 
-Property | Default value | Description |
----------|---------------|-------------|
-Name | `null` | The engine name. |
-EscapeStart | `"` | The start character to delimit identifiers. |
-EscapeEnd | `"` | The end character to delimit identifiers. |
-UpperCaseNames | `false` | If true, converts all tables and column names to uppercase. |
-LowerCaseNames | `false` | If true, converts all tables and column names to lowercase. |
-TableAs | `true` | If true, adds the "as" keyword before the alias of a table. |
-FromDummyName | `null` | The name of a dummy table for engines that always need a "from" clause. Set to null for engines that do not need a dummy table. |
-WithRecursive | `false` | If the "with" clause needs the "recursive" keyword. |
-TopSupported | `true` | If the engine supports "top". |
-TopAsParameters  | `true` | If true, adds the top values as parameters. |
-DistinctOnSupported | `true` | If the engine supports "distinct on". |
-RightJoinSupported | `true` | If the engine supports "right join". |
-FullJoinSupported | `true` | If the engine supports "full join". |
-OffsetStyle | `OffsetStyle.Offset`  | The offset style. |
-OffsetAsParameters | `true` | If true, adds the offset values as parameters. |
-InsertWithUnion | `false` | If the "insert" statement must use a "select union all" to insert multiple rows. |
-UpdateWithFrom | `false` | If the "update" statement must have a "from" clause. Some engines need it when the table has an alias or a join. |
-UpdateSetWithTableName | `false` | If the column must have the table name in the "set" clause. Some engines need it when the table has a join. |
-DeleteWithAlias | `true` | If the "delete" statement must have an alias before the "from" clause. Some engines need it when the table has an alias or a join. |
-ParameterPrefix | `"@p"` | The prefix of the parameters. |
-ParameterIndex  | `true` | If true, adds the index after the parameter name. |
-FunctionsOnlyRegistered | `false` | If only allow registered functions. |
+| Property | Default value | Description |
+|----------|---------------|-------------|
+| Name | `null` | The engine name. |
+| EscapeStart | `"` | The start character to delimit identifiers. |
+| EscapeEnd | `"` | The end character to delimit identifiers. |
+| UpperCaseNames | `false` | If true, converts all tables and column names to uppercase. |
+| LowerCaseNames | `false` | If true, converts all tables and column names to lowercase. |
+| TableAs | `true` | If true, adds the "as" keyword before the alias of a table. |
+| FromDummyName | `null` | The name of a dummy table for engines that always need a "from" clause. Set to null for engines that do not need a dummy table. |
+| WithRecursive | `false` | If the "with" clause needs the "recursive" keyword. |
+| TopSupported | `true` | If the engine supports "top". |
+| TopAsParameters  | `true` | If true, adds the top values as parameters. |
+| DistinctOnSupported | `true` | If the engine supports "distinct on". |
+| RightJoinSupported | `true` | If the engine supports "right join". |
+| FullJoinSupported | `true` | If the engine supports "full join". |
+| OffsetStyle | `OffsetStyle.Offset`  | The offset style. |
+| OffsetAsParameters | `true` | If true, adds the offset values as parameters. |
+| InsertWithUnion | `false` | If the "insert" statement must use a "select union all" to insert multiple rows. |
+| UpdateWithFrom | `false` | If the "update" statement must have a "from" clause. Some engines need it when the table has an alias or a join. |
+| UpdateSetWithTableName | `false` | If the column must have the table name in the "set" clause. Some engines need it when the table has a join. |
+| DeleteWithAlias | `true` | If the "delete" statement must have an alias before the "from" clause. Some engines need it when the table has an alias or a join. |
+| ParameterPrefix | `"@p"` | The prefix of the parameters. |
+| ParameterIndex  | `true` | If true, adds the index after the parameter name. |
+| FunctionsOnlyRegistered | `false` | If only allow registered functions. |
 
 ## Register functions
 You can register functions with the **AddFunction** method to translate them with a different name:
@@ -116,8 +116,8 @@ protected override void InitFunctions()
 
 The supported engines has already registered the functions of the [SqlFn](../general/functions.md#sqlfn) and [SqlExp](../general/functions.md#sqlexp) classes.
 
-## Compile query
-The engine can compile any object that implements the interface `IQueryFragment`.
+## Compile the query
+The engine can compile any object that implements the `IQueryFragment` interface.
 ```csharp
 // Create your query
 IAlias person = sql.Alias("person");
@@ -136,4 +136,29 @@ result.Sql;
 // This is a dictionary with the parameters:
 // { ["@p0"] = 1 }
 result.Parameters;
+```
+
+### Parameters
+The default parameter name is `@p` or `:p` (Oracle), but you can set any name:
+```csharp
+// Change parameter prefix
+engine.Options.ParameterPrefix = "$p";
+```
+
+You can also remove the index from the parameter name to use positional parameters:
+```csharp
+// Enable positional parameters
+engine.Options.ParameterPrefix = "?";
+engine.Options.ParameterIndex = false;
+```
+
+The parameters will be added to a list instead of a dictionary:
+```csharp
+// This is the SQL result:
+// SELECT "person".* FROM "person" WHERE "person"."Id" = ?
+result.Sql;
+
+// This is a list with the parameters:
+// { 1 }
+result.ParametersList;
 ```

@@ -70,40 +70,40 @@ IOperator op = sql.Union(
 ## List of operators
 The following list shows the implemented operators:
 
-SQL operator | ISqlBuilder | SqlExp | Expressions |
--------------|-------------|--------|-------------|
-**=** | Eq <sup>(1)</sup>| Eq | == |
-**<>** | NotEq <sup>(1)</sup>| NotEq | != |
-**LIKE** | Like <sup>(1)</sup>| Like | Like <sup>(2)</sup> |
-**NOT LIKE** | NotLike <sup>(1)</sup>| NotLike | NotLike <sup>(2)</sup> |
-**<** | Lt <sup>(1)</sup>| Lt | < |
-**<=** | Le <sup>(1)</sup>| Le | <= |
-**>** | Gt <sup>(1)</sup>| Gt | > |
-**>=** | Ge <sup>(1)</sup>| Ge | >= |
-**IN** | In <sup>(1)</sup>| In | In <sup>(3)</sup> |
-**NOT IN** | NotIn <sup>(1)</sup>| NotIn | NotIn <sup>(3)</sup> |
-**NOT** | Not <sup>(1)</sup>| Not | ! |
-**IS NULL** | IsNull <sup>(1)</sup><br>Eq(null) <sup>(1)</sup>| IsNull<br>Eq(null) | == null |
-**IS NOT NULL** | IsNotNull <sup>(1)</sup><br>NotEq(null)<sup>(1)</sup> | IsNotNull<br>NotEq(null) | != null |
-**AND** | And | | && *or* & |
-**OR** | Or | | &#124;&#124; *or* &#124; |
-**+** | Add | | + |
-**-** | Subtract | | - |
-**\*** | Multiply | | * |
-**/** | Divide | | / |
-**%** | Modulo | | % |
-**&** | BitAnd | | & |
-**&#124;** | BitOr | | &#124; |
-**^** | BitXor | | ^ |
-**ALL** | All | All | |
-**ANY** | Any | Any | |
-**EXISTS** | Exists | Exists | |
-**SOME** | Some |  Some | |
-**UNION** | Union | | |
-**UNION ALL** | UnionAll | | |
-**INTERSECT** | Intersect | | |
-**EXCEPT** | Except | | |
-**COALESCE()** | | | ?? |
+| SQL operator | ISqlBuilder | SqlExp | Expressions |
+|--------------|-------------|--------|-------------|
+| **=** | Eq <sup>(1)</sup>| Eq | == |
+| **<>** | NotEq <sup>(1)</sup>| NotEq | != |
+| **LIKE** | Like <sup>(1)</sup>| Like | Like <sup>(2)</sup> |
+| **NOT LIKE** | NotLike <sup>(1)</sup>| NotLike | NotLike <sup>(2)</sup> |
+| **<** | Lt <sup>(1)</sup>| Lt | < |
+| **<=** | Le <sup>(1)</sup>| Le | <= |
+| **>** | Gt <sup>(1)</sup>| Gt | > |
+| **>=** | Ge <sup>(1)</sup>| Ge | >= |
+| **IN** | In <sup>(1)</sup>| In | In <sup>(3)</sup> |
+| **NOT IN** | NotIn <sup>(1)</sup>| NotIn | NotIn <sup>(3)</sup> |
+| **NOT** | Not <sup>(1)</sup>| Not | ! |
+| **IS NULL** | IsNull <sup>(1)</sup><br>Eq(null) <sup>(1)</sup>| IsNull<br>Eq(null) | == null |
+| **IS NOT NULL** | IsNotNull <sup>(1)</sup><br>NotEq(null)<sup>(1)</sup> | IsNotNull<br>NotEq(null) | != null |
+| **AND** | And | | && *or* & |
+| **OR** | Or | | &#124;&#124; *or* &#124; |
+| **+** | Add | | + |
+| **-** | Subtract | | - |
+| **\*** | Multiply | | * |
+| **/** | Divide | | / |
+| **%** | Modulo | | % |
+| **&** | BitAnd | | & |
+| **&#124;** | BitOr | | &#124; |
+| **^** | BitXor | | ^ |
+| **ALL** | All | All | |
+| **ANY** | Any | Any | |
+| **EXISTS** | Exists | Exists | |
+| **SOME** | Some |  Some | |
+| **UNION** | Union | | |
+| **UNION ALL** | UnionAll | | |
+| **INTERSECT** | Intersect | | |
+| **EXCEPT** | Except | | |
+| **COALESCE()** | | | ?? |
 
 !!! note
     (1): has also extension methods for `IQueryFragment`.<br/>
@@ -113,11 +113,11 @@ SQL operator | ISqlBuilder | SqlExp | Expressions |
 ## Like pattern
 You can use the following methods to apply a like pattern:
 
-ISqlBuilder | Result |
-------------|------- |
-ToLikeStart | Value% |
-ToLikeEnd | %Value |
-ToLikeAny | %Value% |
+| ISqlBuilder | Result |
+|-------------|------- |
+| ToLikeStart | Value% |
+| ToLikeEnd | %Value |
+| ToLikeAny | %Value% |
 
 ```csharp
 IAlias person = sql.Alias("person");

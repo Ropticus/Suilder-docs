@@ -1,9 +1,9 @@
 # The builder
-In Suilder the queries are built by combining smaller query fragments. A query fragment is an object that implements the interface `IQueryFragment` and can be compiled to SQL. To create any `IQueryFragment` we use the methods of the `ISqlBuilder` interface.
+In Suilder the queries are built by combining smaller query fragments. A query fragment is an object that implements the `IQueryFragment` interface and can be compiled to SQL. To create any `IQueryFragment` we use the methods of the `ISqlBuilder` interface.
 
-For any method of the builder or an `IQueryFragment`, that accept an `object` as argument, anything that not implements the `IQueryFragment` interface, is interpreted as a **literal value** and added as a parameter.
+Any type that does not implement the `IQueryFragment` interface, is interpreted as a **literal value** and added to the parameters of the query.
 
-For example, if you pass a **string**, is added as a **string literal** parameter and not a column name. To reference a table or column name you must use an [**alias object**](#alias-objects).
+For example, a **string** will be added as a parameter of the query, and not as a column name in the SQL. To reference a table or column name you must use an [**alias object**](#alias-objects).
 
 ## Create the builder
 You have to create a builder instance and register globally:
@@ -18,7 +18,7 @@ Only **one builder** can be registered **per application** because the builder i
     You can inherit the builder to add more methods, and override any existing method.
 
 ## Alias objects
-**Alias objects** implements the interface `IAlias`, and is both the table and his alias. With an alias you can create an `IColumn` instance that contains the column name:
+**Alias objects** implements the `IAlias` interface, and is both the table and his alias. With an alias you can create an `IColumn` instance that contains the column name:
 ```csharp
 // Create an alias
 IAlias person = sql.Alias("person");
@@ -52,9 +52,9 @@ IJoin join = sql.Join(dept).On(op);
     The **typed alias** can also use a string for column names.
 
 ## Lambda expressions
-Lambda expressions are compiled to an `IQueryFragment`. When you use your **entity classes** in an expression, is compiled to an `IAlias` or an `IColumn`.
+Lambda expressions are compiled to an `IQueryFragment`. When you use your **entity classes** in an expression, they are compiled to an `IAlias` or an `IColumn`.
 
-Any member of a class that is not registered as a table, is invoked and added as a parameter value. Functions are also executed, if you want to compile a function to SQL, you can [register your functions](functions.md#register-functions).
+Any member of a class that is not registered as a table, is invoked and the result is added as a query parameter. Functions are also executed, if you want to compile a function to SQL, you can [register your functions](functions.md#register-functions).
 
 The following methods of the builder allow you to compile a lambda expression:
 
@@ -84,10 +84,10 @@ IColumn colAll1 = sql.Col(() => person);
 IColumn col2 = (IColumn)sql.Val(() => dept.Name);
 
 // Arithmetic operators use the "Val" method and not the "Op" method
-IOperator func = (IOperator)sql.Val(() => person.Salary + 100);
+IOperator op1 = (IOperator)sql.Val(() => person.Salary + 100);
 
 // Boolean operators use the "Op" method
-IOperator op = sql.Op(() => person.Department.Id == dept.Id);
+IOperator op2 = sql.Op(() => person.Department.Id == dept.Id);
 
 // Select
 ISelect select = sql.Select.Add(() => person.Id, () => person.Name);
@@ -96,7 +96,19 @@ ISelect select = sql.Select.Add(() => person.Id, () => person.Name);
 IFrom from = sql.From(() => person);
 
 // Join
-IJoin join = sql.Join(() => dept).On(op);
+IJoin join = sql.Join(() => dept).On(op2);
+```
+
+There is also a **Val** method in the [**SqlExp**](#sqlexp) class, which prevents the value from being compiled into an `IQueryFragment` even if it is an alias or a registered function.
+```csharp
+// Class alias
+Person person = null;
+
+// Some instance
+Person personValue = new Person() { Id = 1 };
+
+// Use the alias and the instance in the same expression
+IOperator op = (IOperator)sql.Op(() => person.Id == SqlExp.Val(personValue.Id));
 ```
 
 ## Without alias
@@ -203,7 +215,7 @@ ExpressionProcessor.AddFunction(typeof(String), nameof(String.Contains), (expres
 ```
 
 ## Custom components
-You can add your custom components implementing the interface `IQueryFragment`.
+You can add your custom components implementing the `IQueryFragment` interface.
 
 Implement the interface is very easy, you only have to implement the **Compile** method:
 ```csharp
