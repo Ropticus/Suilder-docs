@@ -3,11 +3,11 @@
 IAlias person = sql.Alias("person");
 Department dept = null;
 
-IFunction fn1 = sql.Function("TRIM").Add(person["Name"]));
+IFunction func1 = sql.Function("TRIM").Add(person["Name"]);
 
-IFunction fn2 = sql.Function("SUBSTRING").Add(person["Name"], 1, 10);
+IFunction func2 = sql.Function("SUBSTRING").Add(person["Name"], 1, 10);
 
-IFunction fn3 = sql.Function("SUBSTRING").Add(() => dept.Name, () => 1, () => 10);
+IFunction func3 = sql.Function("SUBSTRING").Add(() => dept.Name, () => 1, () => 10);
 ```
 
 ## Utilities classes

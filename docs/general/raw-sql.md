@@ -1,7 +1,7 @@
 # Raw SQL
 You can write any raw SQL and combine with any other `IQueryFragment`:
 ```csharp
-// Raw text
+// Raw string
 IRawSql raw1 = sql.Raw("SELECT person.Name FROM person");
 
 // Add other fragments
@@ -15,7 +15,7 @@ IRawSql raw3 = sql.Raw("WHERE {0} = {1}", person["Id"], 10);
 IRawSql raw4 = sql.Raw("WHERE {0} IN {1}", person["Id"], sql.SubList.Add(1, 2, 3));
 ```
 
-If your raw text is a complete query you must use the **RawQuery** method:
+If your raw string is a complete query you must use the **RawQuery** method:
 ```csharp
 // Raw query
 IRawQuery raw1 = sql.RawQuery("SELECT person.Name FROM person");

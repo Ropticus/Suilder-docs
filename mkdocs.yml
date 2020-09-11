@@ -48,6 +48,8 @@ nav:
     - 'general/delete.md'
     - 'general/raw-sql.md'
     - 'general/data-types.md'
+  - Security:
+    - 'security/sql-injection.md'
   - Examples:
     - 'examples/crud.md'
     - 'examples/custom-configuration.md'
