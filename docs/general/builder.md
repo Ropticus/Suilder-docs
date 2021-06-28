@@ -58,10 +58,10 @@ Any member of a class that is not registered as a table, is invoked and the resu
 
 The following methods of the builder allow you to compile a lambda expression:
 
-* **Alias**: compile to an alias instance (`IAlias`).
-* **Col**: compile to a column instance (`IColumn`).
-* **Val**: compile to a value, anything that returns a value like a column (`IColumn`), a function, or an arithmetic operator.
-* **Op**: compile a boolean expression to a boolean operator.
+- **Alias**: compile to an alias instance (`IAlias`).
+- **Col**: compile to a column instance (`IColumn`).
+- **Val**: compile to a value, anything that returns a value like a column (`IColumn`), a function, or an arithmetic operator.
+- **Op**: compile a boolean expression to a boolean operator.
 
 !!! tip
     In most cases you do not need to call these methods because other components accept a lambda expression and compile for you with the correct method.
@@ -224,10 +224,10 @@ public virtual void Compile(QueryBuilder queryBuilder, IEngine engine)
     // Write SQL (don't use for values to prevent SQL injection)
     queryBuilder.Write("SELECT ");
 
-    // Write a IQueryFragment or add parameter value
+    // Write an IQueryFragment or add a parameter value
     queryBuilder.WriteValue(Value);
 
-    // Write a IQueryFrament
+    // Write an IQueryFrament
     queryBuilder.WriteFragment(Value);
 
     // Add a parameter value

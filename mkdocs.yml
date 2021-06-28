@@ -1,5 +1,6 @@
 site_name: Suilder Docs
 site_description: SQL query builder for .NET.
+site_url: https://suilder.readthedocs.io
 copyright: Copyright (c) 2019 Víctor Diez
 repo_url: https://github.com/Ropticus/Suilder-docs
 edit_uri: blob/master/docs/
@@ -15,14 +16,13 @@ markdown_extensions:
       permalink: true
 
 extra_css:
-  - https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css
+  - https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css
   - css/extra.css
 
 extra_javascript:
-  - js/theme_extra.js
-  - https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-clike.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-csharp.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-core.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-clike.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-csharp.min.js
   - js/extra.js
 
 nav:

@@ -3,10 +3,10 @@ You can use your entity classes to build the queries, this allows you to transla
 
 This means that there are some restrictions when you use a property of a class in a query:
 
-* The property must exist as a column in the table, you cannot navigate to columns of other tables, you must do a join and use the property of the joined table.
-* You can use navigation properties for foreign keys, because the foreign key is a column of your table.
-* You cannot use inverse properties, because the column belongs to another table.
-* You cannot use navigation lists, because these are inverse properties.
+- The property must exist as a column in the table, you cannot navigate to columns of other tables, you must do a join and use the property of the joined table.
+- You can use navigation properties for foreign keys, because the foreign key is a column of your table.
+- You cannot use inverse properties, because the column belongs to another table.
+- You cannot use navigation lists, because these are inverse properties.
 
 !!! note
     These restrictions are only for building the queries, you can use any property for mapping the results.
@@ -30,9 +30,9 @@ The inheritance patterns work different in Suilder, because it never generates a
 
 There are 3 properties to configure the inheritance:
 
-* **IsTable**: if true, the class is added as a table, else, is only used to inherit the configuration for derived classes. By default is **false** for **abstract** classes.
-* **InheritColumns**: if the class must inherit the columns of the base class. By default is **true** for classes whose base type is **abstract**.
-* **InheritTable**: if the class must inherit the table name and the columns of the base class. By default is **false**.
+- **IsTable**: if true, the class is added as a table, else, is only used to inherit the configuration for derived classes. By default is **false** for **abstract** classes.
+- **InheritColumns**: if the class must inherit the columns of the base class. By default is **true** for classes whose base type is **abstract**.
+- **InheritTable**: if the class must inherit the table name and the columns of the base class. By default is **false**.
 
 With these properties you can emulate the most common patterns like, Table per concrete type (TPC), Table per type (TPT) and Table per hierarchy (TPH).
 
@@ -106,15 +106,15 @@ public class Address
 ### Table per concrete type (TPC)
 To use the TPC pattern, you have to set the following configuration:
 
-* Set **IsTable** to **false** for `BaseConfig` class.
-* Set **InheritColumns** to **true** for `Person` and `Department` class.
+- Set **IsTable** to **false** for `BaseConfig` class.
+- Set **InheritColumns** to **true** for `Person` and `Department` class.
 
 This is **done by default** if the class `BaseConfig` is **abstract**.
 
 ### Table per type (TPT)
 To use the TPT pattern, you have to set the following configuration:
 
-* Set **InheritColumns** to **false** for `Employee` class.
+- Set **InheritColumns** to **false** for `Employee` class.
 
 This is the **default configuration** for classes that inherit a **non abstract** class.
 
@@ -124,7 +124,7 @@ This is the **default configuration** for classes that inherit a **non abstract*
 ### Table per hierarchy
 To use the TPH pattern, you have to set the following configuration:
 
-* Set **InheritTable** to **true** for `Employee` class.
+- Set **InheritTable** to **true** for `Employee` class.
 
 This **can be the default configuration** if you set `DefaultInheritTable` to true
 
@@ -142,24 +142,24 @@ The following conventions are used by default:
 
 #### Table and column names
 
-* The schema name is empty.
-* The table name is the name of the class.
-* The column name is the name of the property.
-* Nested properties use the concatenation of all properties as name. For example: `Address.Street` -> `"AddressStreet"`.
+- The schema name is empty.
+- The table name is the name of the class.
+- The column name is the name of the property.
+- Nested properties use the concatenation of all properties as name. For example: `Address.Street` -> `"AddressStreet"`.
 
 #### Primary key
 
-* The primary key is the **Id** property if exists in the class.
+- The primary key is the **Id** property if exists in the class.
 
 #### Foreign keys
 
-* If a property is another table, is used as foreign key.
-* By default it uses the primary keys of the other table, concatenating the name of the property and primary key property. For example: `Department.Id` -> `"DepartmentId"`.
+- If a property is another table, is used as foreign key.
+- By default it uses the primary keys of the other table, concatenating the name of the property and primary key property. For example: `Department.Id` -> `"DepartmentId"`.
 
 #### Supported properties
 
-* Only public properties with a getter and setter are added as columns.
-* `IEnumerable<T>` properties where **T** is another table are ignored.
+- Only public properties with a getter and setter are added as columns.
+- `IEnumerable<T>` properties where **T** is another table are ignored.
 
 !!! warning
     Remember that you can not use inverse properties, so if you have a reverse one to one property, you have to mark that property as [ignored](#ignore-property).
@@ -484,9 +484,9 @@ The configuration is processed through multiple **configuration processors**. Yo
 
 By default the following processors are added to the table builder:
 
-* **DefaultPropertyProcessor**: It reads and loads the properties of all registered types, allowing the following processors to read all the properties by looping through a single list. The [Nested](#nested-classes) and [Ignore](#ignore-property) attributes are processed here because it affects the properties to load.
-* **DefaultAttributeProcessor**: It reads and loads the configuration of the attributes.
-* **DefaultConfigProcessor**: It processes the configuration of the tables. This does not include metadata.
+- **DefaultPropertyProcessor**: It reads and loads the properties of all registered types, allowing the following processors to read all the properties by looping through a single list. The [Nested](#nested-classes) and [Ignore](#ignore-property) attributes are processed here because it affects the properties to load.
+- **DefaultAttributeProcessor**: It reads and loads the configuration of the attributes.
+- **DefaultConfigProcessor**: It processes the configuration of the tables. This does not include metadata.
 
 Keep in mind that the order is important. For example, if you want to add your own attribute processor, you have to remove all processors, and add them in the correct order:
 ```csharp
@@ -527,9 +527,9 @@ The **DefaultMetadataProcessor** can be used for simple metadata, where a collec
 
 This processor uses the following rules:
 
-* Table metadata is only inherit if **InheritTable** is `true`.
-* Member metadata is only inherit if **InheritColumns** is `true`.
-* It processes the metadata of all members, even if they are [ignored](#ignore-property).
+- Table metadata is only inherit if **InheritTable** is `true`.
+- Member metadata is only inherit if **InheritColumns** is `true`.
+- It processes the metadata of all members, even if they are [ignored](#ignore-property).
 
 It offers some options to alter the way some keys are inherited or ignored:
 ```csharp
@@ -562,8 +562,8 @@ To create your own **configuration processor** you have to implement the `IConfi
 
 You receive two classes to process the configuration:
 
-* **ConfigData**: contains the configuration data, you have to read from this class.
-* **ResultData**: contains the result of the configuration, you have to write into this class.
+- **ConfigData**: contains the configuration data, you have to read from this class.
+- **ResultData**: contains the result of the configuration, you have to write into this class.
 
 !!! note
     You can also write in the `ConfigData` class to load the configuration of the attributes.

@@ -1,7 +1,3 @@
-.wy-nav-side {
-    padding-bottom: 3em;
-}
-
 .section p {
     text-align: justify;
 }
@@ -14,4 +10,10 @@ pre[class*="language-"] {
     padding: 0;
     margin: 1em 0;
     overflow: initial;
+}
+
+.rst-versions:not(.rst-badge) .rst-current-version {
+    padding: 0 12px !important;
+    display: flex !important;
+    font-size: initial !important;
 }
