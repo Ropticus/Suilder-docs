@@ -79,9 +79,24 @@ You can alter the following configurations:
 | UpdateWithFrom | `false` | If the "update" statement must have a "from" clause. Some engines need it when the table has an alias or a join. |
 | UpdateSetWithTableName | `false` | If the column must have the table name in the "set" clause. Some engines need it when the table has a join. |
 | DeleteWithAlias | `true` | If the "delete" statement must have an alias before the "from" clause. Some engines need it when the table has an alias or a join. |
+| SetOperatorWrapQuery | `true` | If true, adds parentheses to the set operator queries. |
+| SetOperatorWithSubQuery | `false` | If the set operator must use a subquery when the value is another set operator. |
 | ParameterPrefix | `"@p"` | The prefix of the parameters. |
 | ParameterIndex  | `true` | If true, adds the index after the parameter name. |
 | FunctionsOnlyRegistered | `false` | If only allow registered functions. |
+
+## Register operators
+You can register operators with the **AddOperator** method to translate them with a different name:
+```csharp
+// Translate 'EXCEPT' to 'MINUS'
+engine.AddOperator("EXCEPT", "MINUS");
+```
+
+You can also translate the operator into a function:
+```csharp
+// Translate '&' to 'BITAND()'
+engine.AddOperator("&", "BITAND", true);
+```
 
 ## Register functions
 You can register functions with the **AddFunction** method to translate them with a different name:

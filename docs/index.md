@@ -12,6 +12,24 @@ This library is only a query builder, so you have to combine with any other libr
 | Suilder | [![Nuget](https://img.shields.io/nuget/v/Suilder?logo=nuget)](https://www.nuget.org/packages/Suilder/) | [![GitHub release](https://img.shields.io/github/release/Ropticus/Suilder?logo=github)](https://github.com/Ropticus/Suilder/releases/latest) |
 | Suilder.Engines | [![Nuget](https://img.shields.io/nuget/v/Suilder.Engines?logo=nuget)](https://www.nuget.org/packages/Suilder.Engines/) | Use full release. |
 
+## Starting
+At the start of your application:
+```csharp
+// Register your builder (only one per application because is registered globally)
+ISqlBuilder sql = SqlBuilder.Register(new SqlBuilder());
+
+// Initialize the SqlExp class to use their functions in lambda expressions (optional)
+SqlExp.Initialize();
+
+// Create a table builder and add your entity classes (optional)
+ITableBuilder tableBuilder = new TableBuilder();
+tableBuilder.Add<Person>();
+tableBuilder.Add<Department>();
+
+// Create an engine to compile the queries
+IEngine engine = new SQLServerEngine(tableBuilder);
+```
+
 ## Configuration
 
 - [Entity classes](configuration/entity-classes.md)
@@ -28,7 +46,7 @@ This library is only a query builder, so you have to combine with any other libr
     - [Alias and columns](general/builder.md#alias-objects)
     - [Lambda expressions](general/builder.md#lambda-expressions)
     - [Compile the query](general/builder.md#compile-the-query)
-    - [Utilities classes](general/builder.md#utilities-classes)
+    - [Utility classes](general/builder.md#utility-classes)
     - [Custom components](general/builder.md#custom-components)
 - [Operators](general/operators.md)
 - [Case when](general/case-when.md)

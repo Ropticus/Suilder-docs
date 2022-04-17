@@ -12,7 +12,7 @@ You have to create a builder instance and register globally:
 ISqlBuilder sql = SqlBuilder.Register(new SqlBuilder());
 ```
 
-Only **one builder** can be registered **per application** because the builder is registered globally in the `SqlBuilder.Instance` static variable. This variable allows to any `IQueryFragment` and **static utilities** classes to access the builder instance without the needed to inject to it. For the rest of your classes it is recommended that you inject the `ISqlBuilder` interface instead.
+Only **one builder** can be registered **per application** because the builder is registered globally in the `SqlBuilder.Instance` static variable. This variable allows to any `IQueryFragment` and **static utility classes** to access the builder instance without the needed to inject to it. For the rest of your classes it is recommended that you inject the `ISqlBuilder` interface instead.
 
 !!! tip
     You can inherit the builder to add more methods, and override any existing method.
@@ -54,7 +54,7 @@ IJoin join = sql.Join(dept).On(op);
 ## Lambda expressions
 Lambda expressions are compiled to an `IQueryFragment`. When you use your **entity classes** in an expression, they are compiled to an `IAlias` or an `IColumn`.
 
-Any member of a class that is not registered as a table, is invoked and the result is added as a query parameter. Functions are also executed, if you want to compile a function to SQL, you can [register your functions](functions.md#register-functions).
+Any member of a class that is not registered as a table, is invoked and the result is added as a query parameter. Functions are also executed, if you want to compile a function to SQL, you can [register your functions](#register-functions).
 
 The following methods of the builder allow you to compile a lambda expression:
 
@@ -97,18 +97,6 @@ IFrom from = sql.From(() => person);
 
 // Join
 IJoin join = sql.Join(() => dept).On(op2);
-```
-
-There is also a **Val** method in the [**SqlExp**](#sqlexp) class, which prevents the value from being compiled into an `IQueryFragment` even if it is an alias or a registered function.
-```csharp
-// Class alias
-Person person = null;
-
-// Some instance
-Person personValue = new Person() { Id = 1 };
-
-// Use the alias and the instance in the same expression
-IOperator op = (IOperator)sql.Op(() => person.Id == SqlExp.Val(personValue.Id));
 ```
 
 ## Without alias
@@ -157,7 +145,7 @@ result.Sql;
 result.Parameters;
 ```
 
-## Utilities classes
+## Utility classes
 There are the following static utility classes:
 
 ### SqlExtensions
@@ -170,7 +158,7 @@ using Suilder.Extensions;
 This class allows you to create predefined functions that are registered by default in all supported engines. See [examples](functions.md#sqlfn).
 
 ### SqlExp
-Alternative class to `SqlFn` for lambda expressions. It also implements some operators that allow comparisons of different types. See [examples](functions.md#sqlexp).
+Alternative class to `SqlFn` for lambda expressions. See [examples](functions.md#sqlexp).
 
 Before using it you must initialize the class:
 ```csharp
@@ -179,11 +167,53 @@ SqlExp.Initialize();
 ```
 
 !!! note
-    The functions are registered in the **ExpressionProcessor** class.
+    The functions are registered in the [ExpressionProcessor](#expressionprocessor) class.
+
+#### Operators
+The `SqlExp` class also implements some [operators](operators.md#list-of-operators) that allow comparisons of different types:
+```csharp
+Person person = null;
+Department dept = null;
+
+IQuery query = sql.Query.Select(() => SqlExp.Max(dept.Id)).From(() => dept);
+IOperator op = sql.Op(() => SqlExp.Eq(person.Department.Id, query));
+```
+
+#### Other methods
+The **ColName** method creates a column without the table name or alias:
+```csharp
+Person person = null;
+IColumn column = (IColumn)sql.Val(() => SqlExp.ColName(person.Id));
+```
+
+The **As** method changes the type of a value:
+```csharp
+Person person = null;
+Department dept = null;
+
+IQuery query = sql.Query.Select(() => SqlExp.Max(dept.Id)).From(() => dept);
+IOperator op = sql.Op(() => person.Department.Id == SqlExp.As<int>(query));
+```
+
+!!! note
+    The type is only changed within the expression, but does not alter the original value.
+
+The **Val** method prevents the value from being compiled into an `IQueryFragment` even if it is an alias or a registered function:
+```csharp
+// Class alias
+Person person = null;
+
+// Some instance
+Person personValue = new Person() { Id = 1 };
+
+// Use the alias and the instance in the same expression
+IOperator op = (IOperator)sql.Op(() => person.Id == SqlExp.Val(personValue.Id));
+```
 
 ### ExpressionProcessor
 This class is responsible for compiling the lambda expressions.
 
+#### Register functions
 You can register your functions to compile them to an `IQueryFragment`:
 ```csharp
 // It is registered as "SUBSTRING"
@@ -194,11 +224,6 @@ ExpressionProcessor.AddFunction(typeof(SqlExp), nameof(SqlExp.Substring), "SUBST
 
 // Register instance function
 ExpressionProcessor.AddFunction(typeof(String), nameof(String.Trim), "TRIM");
-```
-
-For functions with a **params argument** the value is added as an array value. To avoid this you have to set the **isParams** parameter to true.
-```csharp
-ExpressionProcessor.AddFunction(typeof(SqlExp), nameof(SqlExp.Concat), true);
 ```
 
 For more complex functions you can pass a delegate:

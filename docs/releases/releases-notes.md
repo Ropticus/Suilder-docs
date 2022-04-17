@@ -1,5 +1,36 @@
 # Release notes
 
+## 2.4.0
+Add simple case statement.
+
+Operators:
+
+- Add between, not between, negate, bit not, left shift, right shift, except all and intersect all operators.
+- Add extension methods for more operators.
+- Improve parentheses.
+- Add `ISetOperator` interface for set operators.
+- Set operators now wrap queries in parentheses by default.
+- Add translations of operators.
+
+Columns:
+
+- Add **Name** property to create a column without the table name or alias.
+
+Expressions:
+
+- Improve lambda expressions.
+- Improve compiled expressions.
+- Add support for conditional expressions.
+- Improve the **Val** method to support all operators.
+- Improve the **Add** operator to use the **Concat** method when the type of the expression is a string.
+- Add **As** method to change the type of a value.
+- Add **ColName** method to create a column without the table name or alias.
+- Improve functions with params argument in expressions.
+
+Parameters:
+
+- Add null values as parameters.
+
 ## 2.3.0
 Add support for positional parameters:
 
