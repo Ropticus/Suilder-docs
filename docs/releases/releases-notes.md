@@ -1,5 +1,8 @@
 # Release notes
 
+## 2.4.1
+- Fix **Concat** operator function parentheses.
+
 ## 2.4.0
 Add simple case statement.
 
