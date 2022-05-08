@@ -54,7 +54,7 @@ IQuery query2 = sql.Query
     .From(person);
 ```
 
-For engines that require to use a **dummy table** you can use the following. It can be used in all engines, to write the same query for all. If the engine does not need a dummy table, writes nothing:
+For engines that require to use a **dummy table** you can use the following. It can be used in all engines to write the same query for all of them. If the engine does not need a dummy table, it writes nothing:
 ```csharp
 // From dummy table
 IQuery query3 = sql.Query.Select(SqlFn.Now())
@@ -152,3 +152,25 @@ IQuery query = sql.Query
     .Join(cte2, () => dept)
         .On(() => dept.Id == person.Department.Id);
 ```
+
+### Recursive CTE
+```csharp
+IAlias cteAlias = sql.Alias("cte");
+ICte cte = sql.Cte(cteAlias);
+cte.Add(cteAlias["Number"])
+    .As(sql.UnionAll(
+        sql.Query
+            .Select(1)
+            .From(sql.FromDummy),
+        sql.Query
+            .Select(cteAlias["Number"].Plus(1))
+            .From(cte.Alias)
+            .Where(cteAlias["Number"].Lt(10))));
+
+IQuery query = sql.Query.With(cte)
+    .Select(cteAlias["Number"])
+    .From(cte.Alias);
+```
+
+!!! warning
+    Always use the **Alias** property of the CTE in the **from** clause, because it removes the table name of your alias.
