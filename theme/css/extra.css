@@ -2,7 +2,9 @@
     text-align: justify;
 }
 
-.section p + ul, .section p + pre, .section h4 + ul {
+.section p+ul,
+.section p+pre,
+.section h4+ul {
     margin-top: -10px !important;
 }
 
@@ -10,6 +12,20 @@ pre[class*="language-"] {
     padding: 0;
     margin: 1em 0;
     overflow: initial;
+}
+
+.wy-table-responsive table td,
+.wy-table-responsive table th {
+    white-space: initial;
+}
+
+.rst-content table.docutils td,
+.rst-content table.docutils th {
+    padding: 8px 12px;
+}
+
+.td-nowrap {
+    min-width: 30ch;
 }
 
 .rst-versions:not(.rst-badge) .rst-current-version {

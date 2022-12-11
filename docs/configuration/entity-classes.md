@@ -49,45 +49,45 @@ Employee
 public abstract class BaseConfig
 {
     // Default primary key
-    public virtual int Id { get; set; }
+    public int Id { get; set; }
 
-    public virtual string Guid { get; set; }
+    public string Guid { get; set; }
 
-    public virtual string Name { get; set; }
+    public string Name { get; set; }
 }
 
 public class Department : BaseConfig
 {
     // Foreign key
-    public virtual Employee Boss { get; set; }
+    public Employee Boss { get; set; }
 
     // Navigation lists are ignored
-    public virtual List<Employee> Employees { get; set; }
+    public List<Employee> Employees { get; set; }
 
     // Array column
-    public virtual List<string> Tags { get; set; }
+    public List<string> Tags { get; set; }
 }
 
 public class Person : BaseConfig
 {
-    public virtual string SurName { get; set; }
+    public string SurName { get; set; }
 
     // Properties without getter and setter are ignored
-    public virtual string FullName => $"{Name} {SurName}".TrimEnd();
+    public string FullName => $"{Name} {SurName}".TrimEnd();
 
     // Nested properties
-    public virtual Address Address { get; set; }
+    public Address Address { get; set; }
 }
 
 public class Employee : Person
 {
-    public virtual decimal Salary { get; set; }
+    public decimal Salary { get; set; }
 
     // Foreign key
-    public virtual int DepartmentId { get; set; }
+    public int DepartmentId { get; set; }
 
     // Foreign key
-    public virtual Department Department { get; set; }
+    public Department Department { get; set; }
 
     // Binary column
     public byte[] Image { get; set; }
@@ -345,11 +345,11 @@ public Department Department { get; set; }
 
 // Mark primitive property as foreign key
 [ForeignKey]
-public virtual int DepartmentId { get; set; }
+public int DepartmentId { get; set; }
 
 // Change the name of the foreign key
 [ForeignKey("DeptId")]
-public virtual int DepartmentId { get; set; }
+public int DepartmentId { get; set; }
 ```
 
 With table builder:
