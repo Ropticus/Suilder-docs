@@ -7,7 +7,7 @@ The documentation is built with [MkDocs](https://www.mkdocs.org/).
 ### Requirements
 You will need the following tools:
 
-- [Python 3.11](https://www.python.org/downloads/)
+- [Python 3.12](https://www.python.org/downloads/)
 
 ### Install dependencies
 To download and install the dependencies:

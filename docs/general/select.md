@@ -7,10 +7,10 @@ IAlias person = sql.Alias("person");
 ISelect select1 = sql.Select().Add(person.All);
 
 // Select columns
-ISelect select2 = sql.Select().Add(person["Name"], person["SurName"]);
+ISelect select2 = sql.Select().Add(person["Name"], person["Surname"]);
 
 // Add alias
-ISelect select3 = sql.Select().Add(person["SurName"]).As("SurName");
+ISelect select3 = sql.Select().Add(person["Surname"]).As("Surname");
 
 // Distinct
 ISelect select4 = sql.Select().Distinct().Add(person["Name"]);
@@ -34,10 +34,10 @@ Person person = null;
 ISelect select1 = sql.Select().Add(() => person);
 
 // Select columns
-ISelect select2 = sql.Select().Add(() => person.Name, () => person.SurName);
+ISelect select2 = sql.Select().Add(() => person.Name, () => person.Surname);
 
 // Add alias
-ISelect select3 = sql.Select().Add(() => person.SurName).As("SurName");
+ISelect select3 = sql.Select().Add(() => person.Surname).As("Surname");
 
 // Distinct
 ISelect select4 = sql.Select().Distinct().Add(() => person.Name);
@@ -63,7 +63,7 @@ IQuery query1 = sql.Query.Select(select);
 
 // Create select (columns only)
 IQuery query2 = sql.Query
-    .Select(person["Name"], person["SurName"]);
+    .Select(person["Name"], person["Surname"]);
 
 // Other options
 IQuery query3 = sql.Query

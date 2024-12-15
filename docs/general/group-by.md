@@ -4,16 +4,16 @@ Use the **GroupBy** method of the `IQuery` object.
 IAlias person = sql.Alias("person");
 
 // Add group by to the query
-IValList list = sql.ValList.Add(person["Name"], person["SurName"]);
+IValList list = sql.ValList.Add(person["Name"], person["Surname"]);
 IQuery query1 = sql.Query.GroupBy(list);
 
 // Create group by
 IQuery query2 = sql.Query
-    .GroupBy(person["Name"], person["SurName"])
+    .GroupBy(person["Name"], person["Surname"])
 
 // Other options
 IQuery query3 = sql.Query
-    .GroupBy(x => x.Add(person["Name"], person["SurName"]));
+    .GroupBy(x => x.Add(person["Name"], person["Surname"]));
 ```
 
 With lambda expressions:
@@ -21,14 +21,14 @@ With lambda expressions:
 Person person = null;
 
 // Add group by to the query
-IValList list = sql.ValList.Add(() => person.Name, () => person.SurName);
+IValList list = sql.ValList.Add(() => person.Name, () => person.Surname);
 IQuery query1 = sql.Query.GroupBy(list);
 
 // Create group by
 IQuery query2 = sql.Query
-    .GroupBy(() => person.Name, () => person.SurName)
+    .GroupBy(() => person.Name, () => person.Surname)
 
 // Other options
 IQuery query3 = sql.Query
-    .GroupBy(x => x.Add(() => person.Name, () => person.SurName));
+    .GroupBy(x => x.Add(() => person.Name, () => person.Surname));
 ```

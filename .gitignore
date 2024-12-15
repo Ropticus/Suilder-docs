@@ -2,5 +2,5 @@
 .vscode/*
 *.code-workspace
 
-# Ignore build
+# Build
 site/

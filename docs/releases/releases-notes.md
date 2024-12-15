@@ -1,5 +1,19 @@
 # Release notes
 
+## 2.5.0
+Improve column name configuration:
+
+- Add default column name configuration.
+- Add partial names for nested types.
+
+Improve expressions:
+
+- Add support for checked operators.
+- Add support for array length expressions.
+- Improve alias and column expressions.
+- Improve compiled expressions.
+- Add **Col** method to create a column with an alias.
+
 ## 2.4.1
 - Fix **Concat** operator function parentheses.
 

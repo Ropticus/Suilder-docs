@@ -2,9 +2,9 @@
     text-align: justify;
 }
 
-.section p+ul,
-.section p+pre,
-.section h4+ul {
+.section p + ul,
+.section p + pre,
+.section h4 + ul {
     margin-top: -10px !important;
 }
 

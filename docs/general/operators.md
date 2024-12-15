@@ -116,9 +116,9 @@ The following list shows the implemented operators:
 | **COALESCE()** | | | ?? | |
 | **CONCAT()** | | | + | |
 
-[^1]: extension methods for `IQueryFragment`.
-[^2]: extension method for `String`.
-[^3]: extension method for `IEnumerable`.
+[^1]: Extension methods for `IQueryFragment`.
+[^2]: Extension method for `String`.
+[^3]: Extension method for `IEnumerable`.
 
 ## Like pattern
 You can use the following methods to apply a like pattern:
@@ -129,7 +129,7 @@ You can use the following methods to apply a like pattern:
 | %Value | ToLikeEnd | ToLikeEnd |
 | %Value% | ToLikeAny | ToLikeAny |
 
-[^4]: extension methods for `String`.
+[^4]: Extension methods for `String`.
 
 ```csharp
 IAlias person = sql.Alias("person");

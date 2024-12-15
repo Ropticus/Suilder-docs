@@ -37,7 +37,7 @@ public class CrudExample
             .From(alias)
             .Where(alias[primaryKey].Eq(id));
 
-        // Compile an execute
+        // Compile and execute
         QueryResult result = engine.Compile(query);
 
         // We can have multiple properties mapped to the same column
@@ -60,7 +60,7 @@ public class CrudExample
             .Select(alias.All)
             .From(alias);
 
-        // Compile an execute
+        // Compile and execute
         QueryResult result = engine.Compile(query);
 
         // We can have multiple properties mapped to the same column

@@ -180,6 +180,12 @@ IOperator op = sql.Op(() => SqlExp.Eq(person.Department.Id, query));
 ```
 
 #### Other methods
+The **Col** method creates a column with an alias:
+```csharp
+Person person = null;
+IColumn column = (IColumn)sql.Val(() => SqlExp.Col(person, "Id"));
+```
+
 The **ColName** method creates a column without the table name or alias:
 ```csharp
 Person person = null;

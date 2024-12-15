@@ -70,10 +70,10 @@ public class Department : BaseConfig
 
 public class Person : BaseConfig
 {
-    public string SurName { get; set; }
+    public string Surname { get; set; }
 
     // Properties without getter and setter are ignored
-    public string FullName => $"{Name} {SurName}".TrimEnd();
+    public string FullName => $"{Name} {Surname}".TrimEnd();
 
     // Nested properties
     public Address Address { get; set; }
@@ -167,32 +167,37 @@ The following conventions are used by default:
 ### Default config
 You can change some of the default conventions.
 
-Default schema name:
-```csharp
-tableBuilder.DefaultSchema(x => "dbo");
-```
-
-Default table name:
-```csharp
-tableBuilder.DefaultTableName(x => $"prefix_{x.Name}");
-```
-
-Default primary key property:
-```csharp
-tableBuilder.DefaultPrimaryKey(x => x.GetProperty("Guid")?.Name);
-```
-
 Default **InheritTable**:
 ```csharp
 tableBuilder.DefaultInheritTable(true);
 
 // You can also use an expression
-tableBuilder.DefaultInheritTable(x => !x.IsAbstract && !x.BaseType.IsAbstract);
+tableBuilder.DefaultInheritTable(type => !type.IsAbstract && !type.BaseType.IsAbstract);
 ```
 
 Default **InheritColumns**:
 ```csharp
-tableBuilder.DefaultInheritColumns(x => x.BaseType.IsAbstract);
+tableBuilder.DefaultInheritColumns(type => type.BaseType.IsAbstract);
+```
+
+Default schema name:
+```csharp
+tableBuilder.DefaultSchema(type => "dbo");
+```
+
+Default table name:
+```csharp
+tableBuilder.DefaultTableName(type => $"prefix_{type.Name}");
+```
+
+Default column name:
+```csharp
+tableBuilder.DefaultColumnName((type, properties, i) => properties[i].Name);
+```
+
+Default primary key property:
+```csharp
+tableBuilder.DefaultPrimaryKey(type => type.GetProperty("Guid")?.Name);
 ```
 
 ### Table config
@@ -299,29 +304,37 @@ tableBuilder.Add<Person>()
 With attribute:
 ```csharp
 [Column("LastName")]
-public string SurName { get; set; }
+public string Surname { get; set; }
 
 // Change the prefix of all nested properties
 [Column("Addr")]
 public Address Address { get; set; }
 
-// Change the full name of a nested property
+// Change the full name of a nested property: "Street"
 [Column("Street")]
+public string Street { get; set; }
+
+// Change the partial name of a nested property: "AddrSt"
+[Column("St", true)]
 public string Street { get; set; }
 ```
 
 With table builder:
 ```csharp
 tableBuilder.Add<Person>()
-    .ColumnName(x => x.SurName, "LastName");
+    .ColumnName(x => x.Surname, "LastName");
 
 // Change the prefix of all nested properties
 tableBuilder.Add<Person>()
     .ColumnName(x => x.Address, "Addr");
 
-// Change the full name of a nested property
+// Change the full name of a nested property: "Street"
 tableBuilder.Add<Person>()
     .ColumnName(x => x.Address.Street, "Street");
+
+// Change the partial name of a nested property: "AddrSt"
+tableBuilder.Add<Person>()
+    .ColumnName(x => x.Address.Street, "St", true);
 ```
 
 ### Foreign key
@@ -399,13 +412,13 @@ tableBuilder.Add<Person>()
 With attribute:
 ```csharp
 [Ignore]
-public string SurName { get; set; }
+public string Surname { get; set; }
 ```
 
 With table builder:
 ```csharp
 tableBuilder.Add<Person>()
-    .Ignore(x => x.SurName);
+    .Ignore(x => x.Surname);
 ```
 
 ### Custom metadata
@@ -473,7 +486,7 @@ All methods provide overloads with a string argument for the property name inste
 ```csharp
 tableBuilder.Add(typeof(Person))
     .PrimaryKey("Id");
-    .ColumnName("SurName", "LastName");
+    .ColumnName("Surname", "LastName");
     .ColumnName("Address.Street", "Street")
     .ForeignKey("Department.Id", "DeptId")
     .AddMetadata("Id", "Autoincrement", true);
@@ -574,7 +587,7 @@ The best way to understand how to create a configuration processor is to read th
 ```csharp
 protected override void ProcessData()
 {
-    var levels = GroupByInheranceLevel(ConfigData.ConfigTypes.Values);
+    var levels = GroupByInheritanceLevel(ConfigData.ConfigTypes.Values);
 
     // Loop by inheritance level
     foreach (var level in levels)
